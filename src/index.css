@@ -312,8 +312,8 @@ NOTE: Light Mode support was removed — Dark Mode is the single, permanent them
 
   /* 3D Circular Chrome Social Orb */
   .social-orb-chrome {
-    width: 76px;
-    height: 76px;
+    width: 86px;
+    height: 86px;
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, #ffffff 0%, #dcdfe3 20%, #a1a5ad 45%, #5a5d64 75%, #1c1d20 100%);
     border: 2px solid #b8bbc1;
@@ -325,11 +325,11 @@ NOTE: Light Mode support was removed — Dark Mode is the single, permanent them
     align-items: center;
     justify-content: center;
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   .social-orb-chrome:hover {
-    transform: scale(1.08);
+    transform: scale(1.12);
     box-shadow: 
       inset 0 3px 5px rgba(255, 255, 255, 0.9),
       inset 0 -3px 5px rgba(0, 0, 0, 0.7),
@@ -337,8 +337,8 @@ NOTE: Light Mode support was removed — Dark Mode is the single, permanent them
   }
 
   .social-orb-inner {
-    width: 58px;
-    height: 58px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     background: radial-gradient(circle at 35% 35%, #2c2f34 0%, #111214 70%, #08090a 100%);
     border: 1.5px solid #303236;
@@ -350,36 +350,86 @@ NOTE: Light Mode support was removed — Dark Mode is the single, permanent them
     justify-content: center;
   }
 
-  .social-orb-chrome-cyan {
-    width: 76px;
-    height: 76px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #d1f3ff 0%, #76d6ff 30%, #00a2e0 55%, #005f85 80%, #002d40 100%);
-    border: 2px solid #5bd2ff;
+  /* Neon brand glows for social orbs */
+  .social-orb-insta-neon {
     box-shadow: 
-      inset 0 3px 5px rgba(255, 255, 255, 0.95),
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
       inset 0 -3px 5px rgba(0, 0, 0, 0.7),
-      0 10px 18px rgba(0, 191, 255, 0.6),
-      0 0 20px rgba(0, 191, 255, 0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    transition: all 0.3s ease;
+      0 10px 20px rgba(0, 0, 0, 0.85),
+      0 0 22px rgba(225, 48, 108, 0.85),
+      0 0 45px rgba(225, 48, 108, 0.45);
+    border-color: #f77737 !important;
+  }
+  .social-orb-insta-neon:hover {
+    transform: scale(1.12);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 25px rgba(0, 0, 0, 0.95),
+      0 0 35px rgba(225, 48, 108, 1),
+      0 0 65px rgba(225, 48, 108, 0.65);
   }
 
-  .social-orb-chrome-cyan:hover {
-    transform: scale(1.08);
+  .social-orb-fb-neon {
     box-shadow: 
-      inset 0 3px 5px rgba(255, 255, 255, 0.95),
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
       inset 0 -3px 5px rgba(0, 0, 0, 0.7),
-      0 12px 24px rgba(0, 191, 255, 0.8),
-      0 0 30px rgba(0, 191, 255, 0.6);
+      0 10px 20px rgba(0, 0, 0, 0.85),
+      0 0 22px rgba(24, 119, 242, 0.85),
+      0 0 45px rgba(24, 119, 242, 0.45);
+    border-color: #4267b2 !important;
+  }
+  .social-orb-fb-neon:hover {
+    transform: scale(1.12);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 25px rgba(0, 0, 0, 0.95),
+      0 0 35px rgba(24, 119, 242, 1),
+      0 0 65px rgba(24, 119, 242, 0.65);
+  }
+
+  .social-orb-tt-neon {
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 10px 20px rgba(0, 0, 0, 0.85),
+      0 0 18px rgba(0, 242, 234, 0.7),
+      0 0 35px rgba(254, 44, 85, 0.7);
+    border-color: #3b3d42 !important;
+  }
+  .social-orb-tt-neon:hover {
+    transform: scale(1.12);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 25px rgba(0, 0, 0, 0.95),
+      0 0 28px rgba(0, 242, 234, 0.95),
+      0 0 50px rgba(254, 44, 85, 0.95);
+  }
+
+  .social-orb-tw-neon {
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 10px 20px rgba(0, 0, 0, 0.85),
+      0 0 22px rgba(0, 191, 255, 0.85),
+      0 0 45px rgba(0, 191, 255, 0.45);
+    border-color: #00bfff !important;
+  }
+  .social-orb-tw-neon:hover {
+    transform: scale(1.12);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 25px rgba(0, 0, 0, 0.95),
+      0 0 35px rgba(0, 191, 255, 1),
+      0 0 65px rgba(0, 191, 255, 0.65);
   }
 
   .social-orb-inner-cyan {
-    width: 58px;
-    height: 58px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     background: radial-gradient(circle at 35% 35%, #009ad6 0%, #006b96 60%, #004561 100%);
     border: 1.5px solid #005375;

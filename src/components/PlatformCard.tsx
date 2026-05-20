@@ -31,7 +31,7 @@ export const PlatformCard = ({ platform }: PlatformCardProps) => {
     // Instagram
     if (n.includes("instagram") || n.includes("انستجرام") || n.includes("انستغرام")) {
       return (
-        <div className="social-orb-chrome select-none">
+        <div className="social-orb-chrome social-orb-insta-neon select-none">
           <div className="social-orb-inner">
             <svg className="w-8 h-8 text-[#dcdfe3] drop-shadow-[0_2px_3px_rgba(0,0,0,0.85)] filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -46,7 +46,7 @@ export const PlatformCard = ({ platform }: PlatformCardProps) => {
     // Facebook
     if (n.includes("facebook") || n.includes("فيس")) {
       return (
-        <div className="social-orb-chrome select-none">
+        <div className="social-orb-chrome social-orb-fb-neon select-none">
           <div className="social-orb-inner">
             <svg className="w-8 h-8 text-[#dcdfe3] drop-shadow-[0_2px_3px_rgba(0,0,0,0.85)] filter" viewBox="0 0 24 24" fill="currentColor">
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
@@ -55,11 +55,11 @@ export const PlatformCard = ({ platform }: PlatformCardProps) => {
         </div>
       );
     }
-
+ 
     // TikTok
     if (n.includes("tiktok") || n.includes("تيك")) {
       return (
-        <div className="social-orb-chrome select-none">
+        <div className="social-orb-chrome social-orb-tt-neon select-none">
           <div className="social-orb-inner">
             <svg className="w-8 h-8 text-[#dcdfe3] drop-shadow-[0_2px_3px_rgba(0,0,0,0.85)] filter" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.63 4.19 1.15 1.25 2.76 2.01 4.41 2.14v3.86c-1.32-.15-2.6-.66-3.66-1.48-.96-.73-1.68-1.74-2.1-2.88-.05 2.06-.02 4.12-.03 6.19-.06 2.27-.72 4.56-2.07 6.38-1.52 2.08-4.06 3.46-6.66 3.55-2.91.13-5.91-1.27-7.29-3.86-1.49-2.75-1.12-6.52.92-8.87 1.7-2.02 4.45-3.01 7.03-2.5v3.91c-1.47-.46-3.19.14-4.08 1.4-.87 1.2-.7 2.97.41 3.97.97.89 2.47.98 3.53.22.75-.52 1.18-1.39 1.21-2.31.02-3.86.01-7.72.02-11.58.01-.13.02-.27.05-.4z" />
@@ -68,12 +68,12 @@ export const PlatformCard = ({ platform }: PlatformCardProps) => {
         </div>
       );
     }
-
-    // Twitter / X (Glowing cyan orb in the image!)
+ 
+    // Twitter / X
     if (n.includes("twitter") || n.includes("تويتر") || n.includes("توتير")) {
       return (
-        <div className="social-orb-chrome-cyan select-none">
-          <div className="social-orb-inner-cyan">
+        <div className="social-orb-chrome social-orb-tw-neon select-none">
+          <div className="social-orb-inner social-orb-inner-cyan">
             <svg className="w-8 h-8 text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.95)] filter" viewBox="0 0 24 24" fill="currentColor">
               <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
             </svg>
@@ -226,7 +226,7 @@ export const PlatformCard = ({ platform }: PlatformCardProps) => {
       <div className="metal-brushed px-5 pb-5 pt-8 rounded-[18px] flex flex-col items-center gap-4 relative">
         
         {/* Overlapping 3D Chrome Social Media Orb Badge */}
-        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 select-none pointer-events-none transition-transform duration-300 group-hover:scale-105 z-10">
+        <div className="absolute -top-11 left-1/2 transform -translate-x-1/2 select-none pointer-events-none transition-transform duration-300 group-hover:scale-105 z-10">
           {renderSocialOrb(platform.name)}
         </div>
 
