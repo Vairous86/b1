@@ -26,7 +26,9 @@ export const PlatformCard = ({ platform }: PlatformCardProps) => {
 
   // Helper to render high-fidelity 3D metallic social media orbs using pure CSS & SVG
   const renderSocialOrb = (name: string) => {
-    const n = name.toLowerCase();
+    const raw = name || "";
+    // Normalize spacing, dashes, and lower case for ultra robust matching of dynamic DB platform names
+    const n = raw.toLowerCase().replace(/[\s\-_]+/g, "").trim();
     
     // Instagram
     if (n.includes("instagram") || n.includes("انستجرام") || n.includes("انستغرام")) {
@@ -82,133 +84,139 @@ export const PlatformCard = ({ platform }: PlatformCardProps) => {
       );
     }
 
-    // Default Fallback
+    // WhatsApp
+    if (n.includes("whatsapp") || n.includes("واتس") || n.includes("واساب")) {
+      return (
+        <div className="social-orb-chrome social-orb-wa-neon select-none">
+          <div className="social-orb-inner">
+            <svg className="w-8 h-8 text-[#dcdfe3] drop-shadow-[0_2px_3px_rgba(0,0,0,0.85)] filter" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.504-5.714-1.466L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.966a9.782 9.782 0 0 0-6.974-2.85C6.208 1.99 1.782 6.36 1.778 11.788c-.001 1.632.455 3.224 1.32 4.622l-.995 3.635 3.738-.979z" />
+            </svg>
+          </div>
+        </div>
+      );
+    }
+
+    // Snapchat
+    if (n.includes("snapchat") || n.includes("سناب")) {
+      return (
+        <div className="social-orb-chrome social-orb-snap-neon select-none">
+          <div className="social-orb-inner">
+            <svg className="w-8 h-8 text-[#dcdfe3] drop-shadow-[0_2px_3px_rgba(0,0,0,0.85)] filter" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.762c-3.109 0-4.661.762-4.661 2.302 0 .151.023.351.047.531l.094.615c-.212.023-.424.094-.613.235-.353.259-.517.659-.517 1.224 0 .376.118.682.376.847.094.047.165.118.212.212-.047.212-.259.612-.659 1.153-.306.4-.564.847-.729 1.341a4.912 4.912 0 0 0-.259 1.576c0 .776.329 1.435.918 1.835l.235.141c-.047.094-.141.282-.235.588-.047.235-.094.541-.094.847 0 .847.4 1.459 1.129 1.765.235.094.494.141.776.141 1.506 0 2.259-.8 2.259-2.353 0-.094-.024-.235-.047-.376l-.071-.471c.565-.212 1.2-.329 1.835-.329s1.271.118 1.835.329l-.071.471c-.024.141-.047.282-.047.376 0 1.553.753 2.353 2.259 2.353.282 0 .541-.047.776-.141.729-.306 1.129-.918 1.129-1.765 0-.306-.047-.612-.094-.847-.094-.306-.188-.494-.235-.588l.235-.141c.588-.4 1.012-1.059 1.012-1.835a4.912 4.912 0 0 0-.259-1.576c-.165-.494-.423-.941-.729-1.341-.4-.541-.612-.941-.659-1.153.047-.094.118-.165.212-.212.259-.165.376-.471.376-.847 0-.565-.164-.965-.517-1.224a1.276 1.276 0 0 0-.613-.235l.094-.615c.024-.18.047-.38.047-.531 0-1.54-1.552-2.302-4.661-2.302z" />
+            </svg>
+          </div>
+        </div>
+      );
+    }
+
+    // YouTube
+    if (n.includes("youtube") || n.includes("يوتيوب")) {
+      return (
+        <div className="social-orb-chrome social-orb-yt-neon select-none">
+          <div className="social-orb-inner">
+            <svg className="w-8 h-8 text-[#dcdfe3] drop-shadow-[0_2px_3px_rgba(0,0,0,0.85)] filter" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg>
+          </div>
+        </div>
+      );
+    }
+
+    // Account Recovery
+    if (n.includes("recovery") || n.includes("استرجاع") || n.includes("حسابات")) {
+      return (
+        <div className="social-orb-chrome social-orb-recovery-neon select-none">
+          <div className="social-orb-inner">
+            <svg className="w-8 h-8 text-[#dcdfe3] drop-shadow-[0_2px_3px_rgba(0,0,0,0.85)] filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25z" />
+            </svg>
+          </div>
+        </div>
+      );
+    }
+
+    // Kik / Kwai
+    if (n.includes("kwai") || n.includes("كويك") || n.includes("كواي") || n.includes("كيك") || n.includes("kik")) {
+      return (
+        <div className="social-orb-chrome social-orb-kwai-neon select-none">
+          <div className="social-orb-inner">
+            <svg className="w-8 h-8 text-[#dcdfe3] drop-shadow-[0_2px_3px_rgba(0,0,0,0.85)] filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+          </div>
+        </div>
+      );
+    }
+
+    // Block numbers
+    if (n.includes("block") || n.includes("قفل") || n.includes("حظر") || n.includes("منع")) {
+      return (
+        <div className="social-orb-chrome social-orb-block-neon select-none">
+          <div className="social-orb-inner">
+            <svg className="w-8 h-8 text-[#dcdfe3] drop-shadow-[0_2px_3px_rgba(0,0,0,0.85)] filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25z" />
+            </svg>
+          </div>
+        </div>
+      );
+    }
+
+    // Canva / Pro
+    if (n.includes("canva") || n.includes("كانفا") || n.includes("اشتراكات") || n.includes("بروم")) {
+      return (
+        <div className="social-orb-chrome social-orb-canva-neon select-none">
+          <div className="social-orb-inner">
+            <svg className="w-8 h-8 text-[#dcdfe3] drop-shadow-[0_2px_3px_rgba(0,0,0,0.85)] filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12z" />
+            </svg>
+          </div>
+        </div>
+      );
+    }
+
+    // Default Fallback with beautiful default neon-glow style
     return (
-      <div className="social-orb-chrome select-none">
+      <div className="social-orb-chrome social-orb-default-neon select-none">
         <div className="social-orb-inner">
           <span className="text-2xl font-black text-[#cbd0d6] drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.85)] font-heading">
-            {name.substring(0, 1).toUpperCase()}
+            {raw.substring(0, 1).toUpperCase()}
           </span>
         </div>
       </div>
     );
   };
 
-  // Helper to render inline bullet item SVGs inside circular grey buttons
-  const renderItemBullet = (type: "user" | "heart" | "play" | "comment") => {
-    let iconSvg = null;
-    if (type === "user") {
-      iconSvg = (
-        <svg className="w-3.5 h-3.5 text-[#1e2024]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-        </svg>
-      );
-    } else if (type === "heart") {
-      iconSvg = (
-        <svg className="w-3.5 h-3.5 text-[#1e2024]" fill="currentColor" viewBox="0 0 24 24">
-          <path d="m11.645 20.91-.007-.003-.003-.001a11.13 11.13 0 0 1-5.075-3.536C3.96 14.662 3 11.373 3 7.82 3 4.606 5.23 2 8 2c1.722 0 3.254.912 4.145 2.253C13.035 2.912 14.568 2 16.3 2c2.77 0 5 2.606 5 5.82 0 3.553-.96 6.842-4.56 9.55a11.13 11.13 0 0 1-5.074 3.536l-.004.001-.007.003Z" />
-        </svg>
-      );
-    } else if (type === "play") {
-      iconSvg = (
-        <svg className="w-3.5 h-3.5 text-[#1e2024] fill-current" viewBox="0 0 24 24">
-          <path d="M8 5v14l11-7z" />
-        </svg>
-      );
-    } else if (type === "comment") {
-      iconSvg = (
-        <svg className="w-3.5 h-3.5 text-[#1e2024]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785 0.5.5 0 0 0 .316.793 8.66 8.66 0 0 0 5.293-1.623c.302-.17.671-.168.971.018a10.023 10.023 0 0 0 5.284 1.48Z" />
-        </svg>
-      );
-    }
-
+  // Helper to render inline bullet item SVGs inside circular grey buttons (now always gorgeous checkmarks)
+  const renderItemBullet = () => {
     return (
       <div className="metal-bullet-icon">
-        {iconSvg}
+        <svg className="w-3.5 h-3.5 text-[#1e2024]" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+        </svg>
       </div>
     );
   };
 
-  // Render mock detailed services points depending on the platform name (matching the look of the image)
-  const renderPlatformPoints = (name: string) => {
-    const n = name.toLowerCase();
-    
-    if (n.includes("instagram") || n.includes("انستجرام")) {
-      return (
-        <div className="w-full flex flex-col gap-3 px-1 my-2">
-          <div className="flex items-center justify-end gap-3 w-full">
-            <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">متابعين</span>
-            {renderItemBullet("user")}
-          </div>
-          <div className="flex items-center justify-end gap-3 w-full">
-            <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">لايكات</span>
-            {renderItemBullet("heart")}
-          </div>
-          <div className="flex items-center justify-end gap-3 w-full">
-            <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">مشاهدات</span>
-            {renderItemBullet("play")}
-          </div>
-          <div className="flex items-center justify-end gap-3 w-full">
-            <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">تعليقات</span>
-            {renderItemBullet("comment")}
-          </div>
-        </div>
-      );
-    }
-    
-    if (n.includes("facebook") || n.includes("فيس")) {
-      return (
-        <div className="w-full flex flex-col gap-3 px-1 my-2">
-          <div className="flex items-center justify-end gap-3 w-full">
-            <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">متابعين 200</span>
-            {renderItemBullet("user")}
-          </div>
-          <div className="flex items-center justify-end gap-3 w-full">
-            <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">لايكات</span>
-            {renderItemBullet("heart")}
-          </div>
-          <div className="flex items-center justify-end gap-3 w-full">
-            <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">مشاهدات 5250</span>
-            {renderItemBullet("play")}
-          </div>
-        </div>
-      );
-    }
-
-    if (n.includes("tiktok") || n.includes("تيك")) {
-      return (
-        <div className="w-full flex flex-col gap-3 px-1 my-2">
-          <div className="flex items-center justify-end gap-3 w-full">
-            <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">متابعين 200</span>
-            {renderItemBullet("user")}
-          </div>
-          <div className="flex items-center justify-end gap-3 w-full">
-            <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">لايكات</span>
-            {renderItemBullet("heart")}
-          </div>
-          <div className="flex items-center justify-end gap-3 w-full">
-            <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">مشاهدات 3550</span>
-            {renderItemBullet("play")}
-          </div>
-        </div>
-      );
-    }
-
-    // Default Twitter / Twitter-X & other fallbacks
+  // Render mock detailed services points matching the look of the image (exactly 4 points for all cards)
+  const renderPlatformPoints = (_name?: string) => {
     return (
       <div className="w-full flex flex-col gap-3 px-1 my-2">
         <div className="flex items-center justify-end gap-3 w-full">
-          <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">متابعين 320</span>
-          {renderItemBullet("user")}
+          <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">متابعين</span>
+          {renderItemBullet()}
         </div>
         <div className="flex items-center justify-end gap-3 w-full">
           <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">لايكات</span>
-          {renderItemBullet("heart")}
+          {renderItemBullet()}
         </div>
         <div className="flex items-center justify-end gap-3 w-full">
-          <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">مشاهدات 3850</span>
-          {renderItemBullet("play")}
+          <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">مشاهدات</span>
+          {renderItemBullet()}
+        </div>
+        <div className="flex items-center justify-end gap-3 w-full">
+          <span className="text-sm font-bold text-[#1a1b1f] tracking-wide">تعليقات</span>
+          {renderItemBullet()}
         </div>
       </div>
     );

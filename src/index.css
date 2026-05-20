@@ -360,14 +360,15 @@ NOTE: Light Mode support was removed — Dark Mode is the single, permanent them
       0 0 45px rgba(225, 48, 108, 0.45);
     border-color: #f77737 !important;
   }
-  .social-orb-insta-neon:hover {
+  .social-orb-insta-neon:hover,
+  .group:hover .social-orb-insta-neon {
     transform: scale(1.12);
     box-shadow: 
       inset 0 3px 5px rgba(255, 255, 255, 0.9),
       inset 0 -3px 5px rgba(0, 0, 0, 0.7),
       0 12px 25px rgba(0, 0, 0, 0.95),
-      0 0 35px rgba(225, 48, 108, 1),
-      0 0 65px rgba(225, 48, 108, 0.65);
+      0 0 50px rgba(225, 48, 108, 1),
+      0 0 100px rgba(225, 48, 108, 0.85);
   }
 
   .social-orb-fb-neon {
@@ -379,14 +380,15 @@ NOTE: Light Mode support was removed — Dark Mode is the single, permanent them
       0 0 45px rgba(24, 119, 242, 0.45);
     border-color: #4267b2 !important;
   }
-  .social-orb-fb-neon:hover {
+  .social-orb-fb-neon:hover,
+  .group:hover .social-orb-fb-neon {
     transform: scale(1.12);
     box-shadow: 
       inset 0 3px 5px rgba(255, 255, 255, 0.9),
       inset 0 -3px 5px rgba(0, 0, 0, 0.7),
       0 12px 25px rgba(0, 0, 0, 0.95),
-      0 0 35px rgba(24, 119, 242, 1),
-      0 0 65px rgba(24, 119, 242, 0.65);
+      0 0 50px rgba(24, 119, 242, 1),
+      0 0 100px rgba(24, 119, 242, 0.85);
   }
 
   .social-orb-tt-neon {
@@ -398,14 +400,15 @@ NOTE: Light Mode support was removed — Dark Mode is the single, permanent them
       0 0 35px rgba(254, 44, 85, 0.7);
     border-color: #3b3d42 !important;
   }
-  .social-orb-tt-neon:hover {
+  .social-orb-tt-neon:hover,
+  .group:hover .social-orb-tt-neon {
     transform: scale(1.12);
     box-shadow: 
       inset 0 3px 5px rgba(255, 255, 255, 0.9),
       inset 0 -3px 5px rgba(0, 0, 0, 0.7),
       0 12px 25px rgba(0, 0, 0, 0.95),
-      0 0 28px rgba(0, 242, 234, 0.95),
-      0 0 50px rgba(254, 44, 85, 0.95);
+      0 0 45px rgba(0, 242, 234, 1),
+      0 0 85px rgba(254, 44, 85, 0.95);
   }
 
   .social-orb-tw-neon {
@@ -417,14 +420,183 @@ NOTE: Light Mode support was removed — Dark Mode is the single, permanent them
       0 0 45px rgba(0, 191, 255, 0.45);
     border-color: #00bfff !important;
   }
-  .social-orb-tw-neon:hover {
+  .social-orb-tw-neon:hover,
+  .group:hover .social-orb-tw-neon {
     transform: scale(1.12);
     box-shadow: 
       inset 0 3px 5px rgba(255, 255, 255, 0.9),
       inset 0 -3px 5px rgba(0, 0, 0, 0.7),
       0 12px 25px rgba(0, 0, 0, 0.95),
-      0 0 35px rgba(0, 191, 255, 1),
-      0 0 65px rgba(0, 191, 255, 0.65);
+      0 0 50px rgba(0, 191, 255, 1),
+      0 0 100px rgba(0, 191, 255, 0.85);
+  }
+
+  /* WhatsApp Orb */
+  .social-orb-wa-neon {
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 10px 20px rgba(0, 0, 0, 0.85),
+      0 0 22px rgba(37, 211, 102, 0.85),
+      0 0 45px rgba(37, 211, 102, 0.45);
+    border-color: #25d366 !important;
+  }
+  .social-orb-wa-neon:hover,
+  .group:hover .social-orb-wa-neon {
+    transform: scale(1.12);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 25px rgba(0, 0, 0, 0.95),
+      0 0 60px rgba(37, 211, 102, 1),
+      0 0 110px rgba(37, 211, 102, 0.85);
+  }
+
+  /* Snapchat Orb */
+  .social-orb-snap-neon {
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 10px 20px rgba(0, 0, 0, 0.85),
+      0 0 22px rgba(255, 252, 0, 0.85),
+      0 0 45px rgba(255, 252, 0, 0.45);
+    border-color: #fffc00 !important;
+  }
+  .social-orb-snap-neon:hover,
+  .group:hover .social-orb-snap-neon {
+    transform: scale(1.12);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 25px rgba(0, 0, 0, 0.95),
+      0 0 60px rgba(255, 252, 0, 1),
+      0 0 110px rgba(255, 252, 0, 0.85);
+  }
+
+  /* YouTube Orb */
+  .social-orb-yt-neon {
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 10px 20px rgba(0, 0, 0, 0.85),
+      0 0 22px rgba(255, 0, 0, 0.85),
+      0 0 45px rgba(255, 0, 0, 0.45);
+    border-color: #ff0000 !important;
+  }
+  .social-orb-yt-neon:hover,
+  .group:hover .social-orb-yt-neon {
+    transform: scale(1.12);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 25px rgba(0, 0, 0, 0.95),
+      0 0 60px rgba(255, 0, 0, 1),
+      0 0 110px rgba(255, 0, 0, 0.85);
+  }
+
+  /* Recovery Orb */
+  .social-orb-recovery-neon {
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 10px 20px rgba(0, 0, 0, 0.85),
+      0 0 22px rgba(0, 242, 254, 0.85),
+      0 0 45px rgba(0, 242, 254, 0.45);
+    border-color: #00f2fe !important;
+  }
+  .social-orb-recovery-neon:hover,
+  .group:hover .social-orb-recovery-neon {
+    transform: scale(1.12);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 25px rgba(0, 0, 0, 0.95),
+      0 0 60px rgba(0, 242, 254, 1),
+      0 0 110px rgba(0, 242, 254, 0.85);
+  }
+
+  /* Kwai Orb */
+  .social-orb-kwai-neon {
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 10px 20px rgba(0, 0, 0, 0.85),
+      0 0 22px rgba(255, 140, 0, 0.85),
+      0 0 45px rgba(255, 140, 0, 0.45);
+    border-color: #ff8c00 !important;
+  }
+  .social-orb-kwai-neon:hover,
+  .group:hover .social-orb-kwai-neon {
+    transform: scale(1.12);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 25px rgba(0, 0, 0, 0.95),
+      0 0 60px rgba(255, 140, 0, 1),
+      0 0 110px rgba(255, 140, 0, 0.85);
+  }
+
+  /* Block Numbers Orb */
+  .social-orb-block-neon {
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 10px 20px rgba(0, 0, 0, 0.85),
+      0 0 22px rgba(255, 42, 95, 0.85),
+      0 0 45px rgba(255, 42, 95, 0.45);
+    border-color: #ff2a5f !important;
+  }
+  .social-orb-block-neon:hover,
+  .group:hover .social-orb-block-neon {
+    transform: scale(1.12);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 25px rgba(0, 0, 0, 0.95),
+      0 0 60px rgba(255, 42, 95, 1),
+      0 0 110px rgba(255, 42, 95, 0.85);
+  }
+
+  /* Canva Pro Orb */
+  .social-orb-canva-neon {
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 10px 20px rgba(0, 0, 0, 0.85),
+      0 0 22px rgba(139, 61, 255, 0.85),
+      0 0 45px rgba(139, 61, 255, 0.45);
+    border-color: #8b3dff !important;
+  }
+  .social-orb-canva-neon:hover,
+  .group:hover .social-orb-canva-neon {
+    transform: scale(1.12);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 25px rgba(0, 0, 0, 0.95),
+      0 0 60px rgba(139, 61, 255, 1),
+      0 0 110px rgba(139, 61, 255, 0.85);
+  }
+
+  /* Default Fallback Orb */
+  .social-orb-default-neon {
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 10px 20px rgba(0, 0, 0, 0.85),
+      0 0 22px rgba(0, 191, 255, 0.85),
+      0 0 45px rgba(0, 191, 255, 0.45);
+    border-color: #00bfff !important;
+  }
+  .social-orb-default-neon:hover,
+  .group:hover .social-orb-default-neon {
+    transform: scale(1.12);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 25px rgba(0, 0, 0, 0.95),
+      0 0 60px rgba(0, 191, 255, 1),
+      0 0 110px rgba(0, 191, 255, 0.85);
   }
 
   .social-orb-inner-cyan {

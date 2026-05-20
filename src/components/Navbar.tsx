@@ -8,11 +8,11 @@ export const Navbar = () => {
   const [activeItem, setActiveItem] = useState("الرئيسية");
 
   const menuItems = [
-    { label: "الرئيسية", path: "/" },
-    { label: "الخدمات", path: "/#platforms" },
-    { label: "لماذا نحن؟", path: "/#features" },
-    { label: "آراء العملاء", path: "/#testimonials" },
     { label: "تواصل معنا", path: "/#contact" },
+    { label: "المدونة", path: "/#platforms" },
+    { label: "الخدمات", path: "/#platforms" },
+    { label: "المتجر", path: "/#platforms" },
+    { label: "الرئيسية", path: "/#hero" },
   ];
 
   useEffect(() => {
@@ -25,8 +25,6 @@ export const Navbar = () => {
       const sections = [
         { id: "hero", label: "الرئيسية" },
         { id: "platforms", label: "الخدمات" },
-        { id: "features", label: "لماذا نحن؟" },
-        { id: "testimonials", label: "آراء العملاء" },
         { id: "contact", label: "تواصل معنا" }
       ];
 
@@ -53,7 +51,17 @@ export const Navbar = () => {
         currentActive = "تواصل معنا";
       }
 
-      setActiveItem(currentActive);
+      // If in platforms section, retain active state of الخدمات/المتجر/المدونة if already selected
+      if (currentActive === "الخدمات") {
+        setActiveItem((prev) => {
+          if (prev === "المتجر" || prev === "المدونة" || prev === "الخدمات") {
+            return prev;
+          }
+          return "الخدمات";
+        });
+      } else {
+        setActiveItem(currentActive);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);

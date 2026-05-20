@@ -248,10 +248,10 @@ const Index = () => {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 justify-items-center">
             {[
-              { icon: Headphones, label: locale === "ar" ? "دعم 24/7" : "24/7 Support" },
-              { icon: Award, label: locale === "ar" ? "ضمان التعويض" : "Refill Guarantee" },
-              { icon: Shield, label: locale === "ar" ? "آمن وفعال" : "Safe & Effective" },
               { icon: Clock, label: locale === "ar" ? "تسليم فوري" : "Fast Delivery" },
+              { icon: Shield, label: locale === "ar" ? "آمن وفعال" : "Safe & Effective" },
+              { icon: Award, label: locale === "ar" ? "ضمان التعويض" : "Refill Guarantee" },
+              { icon: Headphones, label: locale === "ar" ? "دعم 24/7" : "24/7 Support" },
             ].map(({ icon: Icon, label }, idx) => (
               <div
                 key={label}
@@ -294,9 +294,9 @@ const Index = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
               {[
-                { name: locale === "ar" ? "محمد العتيبي" : "Mohammad Al-Otaibi", text: locale === "ar" ? "خدمة سريعة وممتازة جداً ومصداقية كاملة في التنفيذ، أنصح بالتعامل معهم دائمًا." : "Very fast and excellent service with complete credibility. Highly recommended.", rating: 5, avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80" },
-                { name: locale === "ar" ? "أحمد سليمان" : "Ahmad Suleiman", text: locale === "ar" ? "أفضل موقع لزيادة المتابعين والتفاعل، الدعم الفني متعاون لأبعد حد وسريع الاستجابة." : "The best website for increasing followers and engagement. Extremely helpful support.", rating: 5, avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80" },
-                { name: locale === "ar" ? "سارة القحطاني" : "Sarah Al-Qahtani", text: locale === "ar" ? "جربت خدمات اللايكات والمشاهدات وكان التوصيل فوري وبدون أي نقصان. شكراً جزيلاً." : "Tried likes and views services, delivery was instant and with zero drop. Thank you!", rating: 5, avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100&q=80" },
+                { name: locale === "ar" ? "أحمد محمد" : "Ahmed Mohamed", text: locale === "ar" ? "خدمة رائعة وسريعة، تعامل احترافي، الجودة ممتازة والدعم متاح دائماً. أنصح بالتعامل معهم" : "Wonderful and fast service, professional handling, excellent quality, and support is always available. I highly recommend dealing with them.", rating: 5, avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80" },
+                { name: locale === "ar" ? "أحمد محمد" : "Ahmed Mohamed", text: locale === "ar" ? "خدمة رائعة وسريعة، تعامل احترافي، الجودة ممتازة والدعم متاح دائماً. أنصح بالتعامل معهم" : "Wonderful and fast service, professional handling, excellent quality, and support is always available. I highly recommend dealing with them.", rating: 5, avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80" },
+                { name: locale === "ar" ? "أحمد محمد" : "Ahmed Mohamed", text: locale === "ar" ? "خدمة رائعة وسريعة، تعامل احترافي، الجودة ممتازة والدعم متاح دائماً. أنصح بالتعامل معهم" : "Wonderful and fast service, professional handling, excellent quality, and support is always available. I highly recommend dealing with them.", rating: 5, avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&h=100&q=80" },
               ].map((item, idx) => (
                 <div key={idx} className="chrome-bezel rounded-[22px] p-2 shadow-lg">
                   <div className="metal-brushed p-5 rounded-[16px] flex flex-col items-center text-center gap-3 h-full">
@@ -374,34 +374,69 @@ const Index = () => {
             <div className="metal-brushed p-6 md:p-8 rounded-[20px] flex flex-col md:flex-row items-center justify-between gap-6">
               
               {/* Payment Logos (Left) */}
-              <div className="flex flex-wrap gap-2 items-center justify-center">
-                {["VISA", "Mastercard", "PayPal", "Mada", "STC Pay"].map((brand) => (
-                  <div key={brand} className="px-3 py-1 bg-gradient-to-b from-[#2e3137] to-[#121315] border border-[#484b51] rounded-[6px] shadow-sm select-none">
-                    <span className="text-[10px] font-black text-white/70 tracking-wide font-sans">{brand}</span>
-                  </div>
-                ))}
+              <div className="flex flex-col gap-2 select-none items-center md:items-start justify-center">
+                <div className="flex gap-2 items-center justify-center">
+                  {["VISA", "Mastercard", "PayPal"].map((brand) => (
+                    <div key={brand} className="px-3 py-1.5 bg-[#050505] border border-[#3b3d42] rounded-[6px] shadow-inner select-none min-w-[70px] text-center">
+                      <span className="text-[11px] font-black text-white/90 tracking-wide font-sans">{brand}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex gap-2 items-center justify-center">
+                  {["Apple Pay", "Mada", "BSO"].map((brand) => (
+                    <div key={brand} className="px-3 py-1.5 bg-[#050505] border border-[#3b3d42] rounded-[6px] shadow-inner select-none min-w-[70px] text-center">
+                      <span className="text-[11px] font-black text-white/90 tracking-wide font-sans">{brand}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* Contact Info (Center) */}
               <div className="text-center md:text-right flex flex-col items-center md:items-end gap-1 text-[#1a1b1e]">
-                <span className="font-heading font-black text-sm">{locale === "ar" ? "قناة تواصل بيدو المصري" : "Bedo Elmasry Contact Info"}</span>
-                <span className="text-xs font-bold opacity-80 select-all">00966505163956 | 01060938386</span>
-                <span className="text-xs font-semibold opacity-70">info@bidomedia.com | © {new Date().getFullYear()}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-black tracking-wide font-heading">info@bido-masry.com</span>
+                  <svg className="w-4 h-4 text-[#1a1b1e]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                  </svg>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-black tracking-wide font-heading font-sans select-all">+201234567890</span>
+                  <svg className="w-4 h-4 text-[#1a1b1e]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.168-5.168-3.511-6.336-6.336l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                  </svg>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-black tracking-wide font-heading">www.bido-masry.com</span>
+                  <svg className="w-4 h-4 text-[#1a1b1e]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-.778.099-1.533.284-2.253" />
+                  </svg>
+                </div>
               </div>
 
               {/* WhatsApp Button (Right) */}
-              <a 
-                href={`https://wa.me/201092902885`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="metal-btn-blue px-6 py-3 text-sm font-bold flex items-center gap-2 transition-transform hover:scale-105 shadow-[0_0_15px_rgba(0,191,255,0.4)]"
-              >
-                {/* 3D-like WhatsApp icon badge inside */}
-                <div className="w-5 h-5 rounded-full bg-[#25d366] flex items-center justify-center shadow-inner">
-                  <Send className="w-3 h-3 text-white fill-white transform rotate-45 -translate-x-[0.5px] translate-y-[0.5px]" />
-                </div>
-                <span>{locale === "ar" ? "تواصل واتساب" : "تواصل واتساب"}</span>
-              </a>
+              <div className="flex items-center gap-3">
+                <a 
+                  href={`https://wa.me/201234567890`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="metal-btn px-8 py-3 text-base font-black flex items-center justify-center gap-3 transition-transform hover:scale-105 border-2 border-[#585c63]"
+                >
+                  <span>{locale === "ar" ? "تواصل واتساب" : "Contact WhatsApp"}</span>
+                </a>
+                {/* Skeuomorphic 3D WhatsApp orb next to it */}
+                <a
+                  href={`https://wa.me/201234567890`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-14 h-14 rounded-full bg-gradient-to-br from-[#ebedf0] to-[#9ba0a7] border-2 border-[#00bfff] shadow-[0_0_20px_rgba(0,191,255,0.7)] flex items-center justify-center cursor-pointer transition-transform hover:scale-110 animate-pulse"
+                >
+                  <div className="w-10 h-10 rounded-full bg-[#25d366] flex items-center justify-center shadow-inner">
+                    <svg className="w-6 h-6 text-white fill-current" viewBox="0 0 24 24">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.504-5.714-1.466L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.966a9.782 9.782 0 0 0-6.974-2.85C6.208 1.99 1.782 6.36 1.778 11.788c-.001 1.632.455 3.224 1.32 4.622l-.995 3.635 3.738-.979z" />
+                    </svg>
+                  </div>
+                </a>
+              </div>
 
             </div>
           </div>
