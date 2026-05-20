@@ -97,21 +97,8 @@ const Index = () => {
           <div className="chrome-bezel rounded-[28px] overflow-hidden p-2 shadow-2xl">
             <div className="metal-brushed p-6 md:p-12 flex flex-col-reverse md:flex-row items-center justify-between gap-8 rounded-[20px] relative min-h-[400px]">
               
-              {/* Left Side: Glowing 3D iPhone display */}
-              <div className="flex-1 w-full flex items-center justify-center relative select-none">
-                <div className="relative w-full max-w-[320px] aspect-[4/5] flex items-center justify-center">
-                  <img 
-                    src="/hero_phone_mockup.png" 
-                    alt="Phone Mockup" 
-                    className="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.85)] animate-float"
-                  />
-                  {/* Decorative glowing blue orb behind the phone */}
-                  <div className="absolute w-[200px] h-[200px] rounded-full bg-[#00bfff]/25 blur-[60px] -z-10 animate-pulse pointer-events-none" />
-                </div>
-              </div>
-
-              {/* Right Side: Arabic Headline & Metallic Glowing CTA */}
-              <div className="flex-1 text-right flex flex-col items-end z-10">
+              {/* Right Side: Arabic Headline & Metallic Glowing CTA (1st in JSX for RTL Right side alignment on desktop) */}
+              <div className="flex-1 text-right flex flex-col items-end z-10 w-full">
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-black mb-8 leading-tight tracking-wide text-right font-heading metal-text-embossed">
                   {locale === "ar" 
                     ? "عزز تواجدك الرقمي بقوة وأمان: تزويد متابعين، لايكات، مشاهدات" 
@@ -126,6 +113,19 @@ const Index = () => {
                 >
                   <span>{locale === "ar" ? "اكتشف الخدمات" : "Discover Services"}</span>
                 </button>
+              </div>
+
+              {/* Left Side: Glowing 3D iPhone display inside a dark dashboard screen (2nd in JSX for RTL Left side alignment on desktop) */}
+              <div className="flex-1 w-full flex items-center justify-center relative select-none z-10">
+                <div className="chrome-bezel p-[6px] rounded-[24px] shadow-2xl relative w-full max-w-[320px] aspect-[4/5] flex items-center justify-center bg-[#050505]">
+                  <img 
+                    src="/hero_phone_mockup.png" 
+                    alt="Phone Mockup" 
+                    className="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.85)] animate-float rounded-[18px]"
+                  />
+                  {/* Decorative glowing blue orb behind the phone */}
+                  <div className="absolute w-[200px] h-[200px] rounded-full bg-[#00bfff]/25 blur-[60px] -z-10 animate-pulse pointer-events-none" />
+                </div>
               </div>
 
             </div>

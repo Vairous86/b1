@@ -220,10 +220,10 @@ export const PlatformCard = ({ platform }: PlatformCardProps) => {
       tabIndex={0}
       onClick={open}
       onKeyDown={handleKey}
-      className="chrome-bezel p-[6px] rounded-[24px] cursor-pointer transition-transform duration-300 hover:scale-[1.03] select-none shadow-xl mt-6 group"
+      className="chrome-bezel !overflow-visible p-[6px] rounded-[24px] cursor-pointer transition-transform duration-300 hover:scale-[1.03] select-none shadow-xl mt-6 group"
       aria-label={`Open platform ${platform.name}`}
     >
-      <div className="metal-brushed px-5 pb-5 pt-8 rounded-[18px] flex flex-col items-center gap-4 relative">
+      <div className="metal-brushed !overflow-visible px-5 pb-5 pt-8 rounded-[18px] flex flex-col items-center gap-4 relative">
         
         {/* Overlapping 3D Chrome Social Media Orb Badge */}
         <div className="absolute -top-11 left-1/2 transform -translate-x-1/2 select-none pointer-events-none transition-transform duration-300 group-hover:scale-105 z-10">
