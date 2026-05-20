@@ -246,28 +246,25 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 justify-items-center">
             {[
-              { icon: Clock, label: "fastDeliveryTitle", desc: "fastDeliveryDesc" },
-              { icon: Shield, label: "safeTitle", desc: "safeDesc" },
-              { icon: Award, label: "qualityTitle", desc: "qualityDesc" },
-              { icon: Headphones, label: "supportTitle", desc: "supportDesc" },
-            ].map(({ icon: Icon, label, desc }, idx) => (
+              { icon: Headphones, label: locale === "ar" ? "دعم 24/7" : "24/7 Support" },
+              { icon: Award, label: locale === "ar" ? "ضمان التعويض" : "Refill Guarantee" },
+              { icon: Shield, label: locale === "ar" ? "آمن وفعال" : "Safe & Effective" },
+              { icon: Clock, label: locale === "ar" ? "تسليم فوري" : "Fast Delivery" },
+            ].map(({ icon: Icon, label }, idx) => (
               <div
                 key={label}
                 className="flex flex-col items-center text-center animate-scale-in"
                 style={{ animationDelay: `${idx * 0.1}s` }}
               >
-                {/* Custom Steel Shield with Bevels */}
-                <div className="steel-shield mb-4 shadow-lg group cursor-default">
-                  <Icon className="w-8 h-8 text-[#26292d] drop-shadow-[0_1px_1.5px_rgba(255,255,255,0.95)]" />
+                {/* Custom Steel Shield with Bevels - containing both Icon and Label */}
+                <div className="steel-shield shadow-lg group cursor-default">
+                  <Icon className="w-8 h-8 text-[#dcdfe3] drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.85)]" />
+                  <span className="font-heading font-black text-white text-[11px] md:text-xs mt-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.95)]">
+                    {label}
+                  </span>
                 </div>
-                <h3 className="font-heading font-black text-white text-md mb-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
-                  {t(label)}
-                </h3>
-                <p className="text-white/50 text-xs leading-relaxed max-w-[170px]">
-                  {t(desc)}
-                </p>
               </div>
             ))}
           </div>

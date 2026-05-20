@@ -312,32 +312,88 @@ NOTE: Light Mode support was removed — Dark Mode is the single, permanent them
 
   /* 3D Circular Chrome Social Orb */
   .social-orb-chrome {
-    width: 65px;
-    height: 65px;
+    width: 76px;
+    height: 76px;
     border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, #ebedf0 0%, #b8bbc2 45%, #6e7279 80%, #303338 100%);
-    border: 1.5px solid #a0a4ab;
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #dcdfe3 20%, #a1a5ad 45%, #5a5d64 75%, #1c1d20 100%);
+    border: 2px solid #b8bbc1;
     box-shadow: 
-      inset 0 2.5px 3px rgba(255, 255, 255, 0.95),
-      inset 0 -2.5px 3px rgba(0, 0, 0, 0.5),
-      0 6px 12px rgba(0, 0, 0, 0.6);
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 10px 18px rgba(0, 0, 0, 0.85);
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
     transition: all 0.3s ease;
   }
 
   .social-orb-chrome:hover {
     transform: scale(1.08);
     box-shadow: 
-      inset 0 2.5px 3px rgba(255, 255, 255, 0.95),
-      inset 0 -2.5px 3px rgba(0, 0, 0, 0.5),
-      0 8px 20px rgba(0, 191, 255, 0.4);
+      inset 0 3px 5px rgba(255, 255, 255, 0.9),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 24px rgba(0, 0, 0, 0.95);
+  }
+
+  .social-orb-inner {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #2c2f34 0%, #111214 70%, #08090a 100%);
+    border: 1.5px solid #303236;
+    box-shadow: 
+      inset 0 2px 4px rgba(0, 0, 0, 0.9),
+      0 1px 1.5px rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social-orb-chrome-cyan {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #d1f3ff 0%, #76d6ff 30%, #00a2e0 55%, #005f85 80%, #002d40 100%);
+    border: 2px solid #5bd2ff;
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.95),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 10px 18px rgba(0, 191, 255, 0.6),
+      0 0 20px rgba(0, 191, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .social-orb-chrome-cyan:hover {
+    transform: scale(1.08);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.95),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.7),
+      0 12px 24px rgba(0, 191, 255, 0.8),
+      0 0 30px rgba(0, 191, 255, 0.6);
+  }
+
+  .social-orb-inner-cyan {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #009ad6 0%, #006b96 60%, #004561 100%);
+    border: 1.5px solid #005375;
+    box-shadow: 
+      inset 0 2px 4px rgba(0, 0, 0, 0.6),
+      0 1px 1.5px rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Porthole Circular Chrome Frame for Avatars */
   .avatar-porthole-chrome {
-    border: 2px solid #9ea2aa;
+    border: 2.5px solid #9ea2aa;
     background: radial-gradient(circle at 35% 35%, #d1d4d8 0%, #7d8187 100%);
     box-shadow: 
       inset 0 1.5px 2px rgba(255, 255, 255, 0.8),
@@ -346,6 +402,90 @@ NOTE: Light Mode support was removed — Dark Mode is the single, permanent them
     border-radius: 50%;
     padding: 3px;
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Recessed Dark Metallic Pill Button */
+  .metal-btn-recessed {
+    background: linear-gradient(180deg, #1f2125 0%, #111214 100%);
+    border: 1.5px solid #383a3f;
+    box-shadow: 
+      inset 0 2px 4px rgba(0, 0, 0, 0.85),
+      0 1.5px 1px rgba(255, 255, 255, 0.1);
+    color: #cbd0d6 !important;
+    font-weight: 700;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+  }
+
+  .metal-btn-recessed:hover {
+    background: linear-gradient(180deg, #282b30 0%, #151619 100%);
+    border-color: #4a4d54;
+    color: #ffffff !important;
+    box-shadow: 
+      inset 0 1.5px 2px rgba(0, 0, 0, 0.7),
+      0 0 8px rgba(0, 191, 255, 0.35);
+  }
+
+  /* Circular Metallic Icon bullet point */
+  .metal-bullet-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #c8cbd2 35%, #767a82 75%, #2a2c30 100%);
+    border: 1.5px solid #a2a6ae;
+    box-shadow: 
+      inset 0 1.5px 1.5px rgba(255, 255, 255, 0.95),
+      inset 0 -1px 1px rgba(0, 0, 0, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Futuristic 3D WhatsApp Floating Orb */
+  .whatsapp-floating-orb {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 50;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #dcdfe3 20%, #a1a5ad 45%, #5a5d64 75%, #1c1d20 100%);
+    border: 2.5px solid #00bfff;
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.95),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.85),
+      0 0 25px rgba(0, 191, 255, 0.85),
+      0 8px 18px rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .whatsapp-floating-orb:hover {
+    transform: scale(1.08) rotate(5deg);
+    box-shadow: 
+      inset 0 3px 5px rgba(255, 255, 255, 0.95),
+      inset 0 -3px 5px rgba(0, 0, 0, 0.85),
+      0 0 35px #00bfff,
+      0 12px 24px rgba(0, 0, 0, 0.7);
+  }
+
+  .whatsapp-floating-orb-inner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #25d366 0%, #128c7e 75%, #075e54 100%);
+    box-shadow: 
+      inset 0 2px 3.5px rgba(255, 255, 255, 0.7),
+      0 2px 4px rgba(0, 0, 0, 0.5);
+    display: flex;
     align-items: center;
     justify-content: center;
   }
