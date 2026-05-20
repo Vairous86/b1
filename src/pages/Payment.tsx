@@ -275,71 +275,59 @@ const Payment = () => {
       : orderData.price || 0;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen metal-mesh-bg text-foreground pb-20">
       <Navbar />
 
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-3xl">
-          <Button
-            variant="ghost"
+          <button
             onClick={() => navigate(-1)}
-            className="mb-6 gap-2"
+            className="metal-btn px-5 py-2.5 text-xs font-black select-none shadow-md flex items-center justify-center gap-2 mb-8 cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            {t("back")}
-          </Button>
+            <span>{t("back")}</span>
+          </button>
 
           <div className="text-center mb-8 animate-fade-in">
-            <h1 className="text-3xl font-heading font-bold text-foreground mb-2">
+            <h1 className="text-3xl font-black font-heading metal-text-embossed-light mb-2">
               {t("completePayment")}
             </h1>
-            <p className="text-muted-foreground">{t("choosePaymentMethod")}</p>
+            <p className="text-sm font-semibold text-muted-foreground/80">{t("choosePaymentMethod")}</p>
           </div>
 
           {/* Order Summary */}
-          <Card className="gradient-card mb-6 animate-slide-up">
-            <CardHeader>
-              <CardTitle className="text-lg">{t("orderSummary")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">
-                    {t("serviceLabel")}
-                  </span>
-                  <span className="font-medium">{orderData.serviceName}</span>
+          <div className="chrome-bezel p-[6px] rounded-[24px] shadow-lg mb-8 animate-slide-up text-right">
+            <div className="metal-brushed-dark p-6 rounded-[18px]">
+              <h2 className="text-lg font-black font-heading metal-text-embossed-light border-b border-white/10 pb-3 mb-4">
+                {t("orderSummary")}
+              </h2>
+              <div className="space-y-3 text-sm font-semibold text-muted-foreground/80">
+                <div className="flex justify-between items-center">
+                  <span className="font-bold text-white">{orderData.serviceName}</span>
+                  <span className="text-muted-foreground/70">{t("serviceLabel")}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">
-                    {t("quantityLabel")}
-                  </span>
-                  <span>{displayUnits.toLocaleString()}</span>
+                <div className="flex justify-between items-center">
+                  <span className="font-bold text-white">{displayUnits.toLocaleString()}</span>
+                  <span className="text-muted-foreground/70">{t("quantityLabel")}</span>
                 </div>
-                <div className="flex justify-between pt-2 border-t border-border">
-                  <span className="font-heading font-bold">
-                    {t("totalAmount")}
+                <div className="flex justify-between items-center pt-3 border-t border-white/5">
+                  <span className="text-xl font-black text-cyan-400 font-heading">
+                    {symbol}{displayPrice.toFixed(2)}
                   </span>
-                  <span className="font-heading font-bold text-primary text-lg">
-                    {symbol}
-                    {displayPrice.toFixed(2)}
-                  </span>
+                  <span className="font-black text-white">{t("totalAmount")}</span>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Payment Method Selection */}
-          <Card
-            className="gradient-card mb-6 animate-slide-up"
-            style={{ animationDelay: "0.1s" }}
-          >
-            <CardHeader>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <CreditCard className="w-5 h-5 text-primary" />
-                {t("selectPaymentMethodTitle")}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
+          <div className="chrome-bezel p-[6px] rounded-[24px] shadow-lg mb-8 animate-slide-up text-right" style={{ animationDelay: "0.1s" }}>
+            <div className="metal-brushed p-6 rounded-[18px]">
+              <h2 className="text-lg font-black font-heading metal-text-embossed flex items-center justify-end gap-2 border-b border-black/10 pb-3 mb-6">
+                <span className="metal-text-embossed">{t("selectPaymentMethodTitle")}</span>
+                <CreditCard className="w-5 h-5 text-black" />
+              </h2>
+
               <RadioGroup
                 value={paymentMethod}
                 onValueChange={(value) =>
@@ -351,50 +339,54 @@ const Payment = () => {
                   <>
                     {paymentSettings.vodafoneActive && (
                       <div
-                        className={`flex items-center space-x-4 p-4 rounded-lg border-2 transition-all cursor-pointer ${paymentMethod === "vodafone"
-                            ? "border-primary bg-primary/5"
-                            : "border-border hover:border-primary/50"
-                          }`}
+                        onClick={() => setPaymentMethod("vodafone")}
+                        className={`flex items-center justify-end gap-4 p-4 rounded-xl border-2 transition-all cursor-pointer ${
+                          paymentMethod === "vodafone"
+                            ? "border-cyan-500 bg-black/15 shadow-inner"
+                            : "border-black/10 bg-black/5 hover:border-black/25"
+                        }`}
                       >
-                        <RadioGroupItem value="vodafone" id="vodafone" />
                         <Label
                           htmlFor="vodafone"
-                          className="flex items-center gap-3 cursor-pointer flex-1"
+                          className="flex items-center justify-end gap-3 cursor-pointer flex-1 text-right"
                         >
-                          <div className="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center">
-                            <Smartphone className="w-6 h-6 text-red-500" />
-                          </div>
                           <div>
-                            <div className="font-medium">Vodafone Cash</div>
-                            <div className="text-sm text-muted-foreground">
+                            <div className="font-black text-black text-base">Vodafone Cash</div>
+                            <div className="text-xs font-bold text-black/60">
                               {t("mobileWalletPayment")}
                             </div>
                           </div>
+                          <div className="w-12 h-12 bg-red-500/10 rounded-full flex items-center justify-center border border-red-500/20">
+                            <Smartphone className="w-6 h-6 text-red-600" />
+                          </div>
                         </Label>
+                        <RadioGroupItem value="vodafone" id="vodafone" className="text-cyan-500" />
                       </div>
                     )}
                     {paymentSettings.instaPayActive && (
                       <div
-                        className={`flex items-center space-x-4 p-4 rounded-lg border-2 transition-all cursor-pointer ${paymentMethod === "instapay"
-                            ? "border-primary bg-primary/5"
-                            : "border-border hover:border-primary/50"
-                          }`}
+                        onClick={() => setPaymentMethod("instapay")}
+                        className={`flex items-center justify-end gap-4 p-4 rounded-xl border-2 transition-all cursor-pointer ${
+                          paymentMethod === "instapay"
+                            ? "border-cyan-500 bg-black/15 shadow-inner"
+                            : "border-black/10 bg-black/5 hover:border-black/25"
+                        }`}
                       >
-                        <RadioGroupItem value="instapay" id="instapay" />
                         <Label
                           htmlFor="instapay"
-                          className="flex items-center gap-3 cursor-pointer flex-1"
+                          className="flex items-center justify-end gap-3 cursor-pointer flex-1 text-right"
                         >
-                          <div className="w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center">
-                            <CreditCard className="w-6 h-6 text-purple-500" />
-                          </div>
                           <div>
-                            <div className="font-medium">InstaPay</div>
-                            <div className="text-sm text-muted-foreground">
+                            <div className="font-black text-black text-base">InstaPay</div>
+                            <div className="text-xs font-bold text-black/60">
                               Instant Bank Transfer
                             </div>
                           </div>
+                          <div className="w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center border border-purple-500/20">
+                            <CreditCard className="w-6 h-6 text-purple-600" />
+                          </div>
                         </Label>
+                        <RadioGroupItem value="instapay" id="instapay" className="text-cyan-500" />
                       </div>
                     )}
                   </>
@@ -402,129 +394,130 @@ const Payment = () => {
                   <>
                     {paymentSettings.stcPayActive && (
                       <div
-                        className={`flex items-center space-x-4 p-4 rounded-lg border-2 transition-all cursor-pointer ${paymentMethod === "stcpay"
-                            ? "border-primary bg-primary/5"
-                            : "border-border hover:border-primary/50"
-                          }`}
+                        onClick={() => setPaymentMethod("stcpay")}
+                        className={`flex items-center justify-end gap-4 p-4 rounded-xl border-2 transition-all cursor-pointer ${
+                          paymentMethod === "stcpay"
+                            ? "border-cyan-500 bg-black/15 shadow-inner"
+                            : "border-black/10 bg-black/5 hover:border-black/25"
+                        }`}
                       >
-                        <RadioGroupItem value="stcpay" id="stcpay" />
                         <Label
                           htmlFor="stcpay"
-                          className="flex items-center gap-3 cursor-pointer flex-1"
+                          className="flex items-center justify-end gap-3 cursor-pointer flex-1 text-right"
                         >
-                          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                            <Smartphone className="w-6 h-6 text-primary" />
-                          </div>
                           <div>
-                            <div className="font-medium">STC Pay</div>
-                            <div className="text-sm text-muted-foreground">
+                            <div className="font-black text-black text-base">STC Pay</div>
+                            <div className="text-xs font-bold text-black/60">
                               {t("mobileWalletPayment")}
                             </div>
                           </div>
+                          <div className="w-12 h-12 bg-zinc-900/10 rounded-full flex items-center justify-center border border-zinc-900/20">
+                            <Smartphone className="w-6 h-6 text-zinc-800" />
+                          </div>
                         </Label>
+                        <RadioGroupItem value="stcpay" id="stcpay" className="text-cyan-500" />
                       </div>
                     )}
 
                     {paymentSettings.alRajhiActive && (
                       <div
-                        className={`flex items-center space-x-4 p-4 rounded-lg border-2 transition-all cursor-pointer ${paymentMethod === "alrajhi"
-                            ? "border-primary bg-primary/5"
-                            : "border-border hover:border-primary/50"
-                          }`}
+                        onClick={() => setPaymentMethod("alrajhi")}
+                        className={`flex items-center justify-end gap-4 p-4 rounded-xl border-2 transition-all cursor-pointer ${
+                          paymentMethod === "alrajhi"
+                            ? "border-cyan-500 bg-black/15 shadow-inner"
+                            : "border-black/10 bg-black/5 hover:border-black/25"
+                        }`}
                       >
-                        <RadioGroupItem value="alrajhi" id="alrajhi" />
                         <Label
                           htmlFor="alrajhi"
-                          className="flex items-center gap-3 cursor-pointer flex-1"
+                          className="flex items-center justify-end gap-3 cursor-pointer flex-1 text-right"
                         >
-                          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                            <CreditCard className="w-6 h-6 text-primary" />
-                          </div>
                           <div>
-                            <div className="font-medium">Al Rajhi Bank</div>
-                            <div className="text-sm text-muted-foreground">
+                            <div className="font-black text-black text-base">Al Rajhi Bank</div>
+                            <div className="text-xs font-bold text-black/60">
                               {t("bankTransfer")}
                             </div>
                           </div>
+                          <div className="w-12 h-12 bg-zinc-900/10 rounded-full flex items-center justify-center border border-zinc-900/20">
+                            <CreditCard className="w-6 h-6 text-zinc-800" />
+                          </div>
                         </Label>
+                        <RadioGroupItem value="alrajhi" id="alrajhi" className="text-cyan-500" />
                       </div>
                     )}
                   </>
                 )}
-
               </RadioGroup>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Payment Details */}
-          <Card
-            className="gradient-card mb-6 animate-slide-up"
-            style={{ animationDelay: "0.2s" }}
-          >
-            <CardHeader>
-              <CardTitle className="text-lg">{t("paymentDetails")}</CardTitle>
-              <CardDescription>{t("paymentDetailsDesc")}</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="p-4 bg-secondary/50 rounded-lg">
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">
-                      {paymentMethod === "stcpay"
-                        ? t("stcPayNumberLabel")
-                        : paymentMethod === "alrajhi"
-                          ? t("alRajhiAccountLabel")
-                          : paymentMethod === "vodafone"
-                            ? t("vodafoneCashNumberLabel")
-                            : "InstaPay Account"}
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <span className="font-mono font-bold text-lg" id="payment-account-number">
-                        {paymentMethod === "stcpay"
+          <div className="chrome-bezel p-[6px] rounded-[24px] shadow-lg animate-slide-up text-right" style={{ animationDelay: "0.2s" }}>
+            <div className="metal-brushed p-6 md:p-8 rounded-[18px] space-y-6">
+              <h2 className="text-lg font-black font-heading metal-text-embossed border-b border-black/10 pb-3">
+                {t("paymentDetails")}
+              </h2>
+              
+              <div className="p-4 bg-black/15 rounded-xl border border-black/10 shadow-inner space-y-4">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    {/* Copy button */}
+                    <button
+                      onClick={async (e) => {
+                        e.stopPropagation();
+                        const num = paymentMethod === "stcpay"
                           ? paymentSettings.stcPayNumber
                           : paymentMethod === "alrajhi"
                             ? paymentSettings.alRajhiAccount
                             : paymentMethod === "vodafone"
                               ? paymentSettings.vodafoneCash
-                              : paymentSettings.instaPayAccount}
-                      </span>
-                      {/* Copy button uses the Clipboard API for quick copy and shows a small toast on success */}
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={async (e) => {
-                          e.stopPropagation();
-                          const num = paymentMethod === "stcpay"
-                            ? paymentSettings.stcPayNumber
-                            : paymentMethod === "alrajhi"
-                              ? paymentSettings.alRajhiAccount
-                              : paymentMethod === "vodafone"
-                                ? paymentSettings.vodafoneCash
-                                : paymentSettings.instaPayAccount;
-                          try {
-                            await navigator.clipboard.writeText(num || "");
-                            toast({ title: "Copied ✅", description: num });
-                          } catch (err) {
-                            toast({ title: "Copy failed", description: String(err) });
-                          }
-                        }}
-                        aria-label={t("copyAccountNumber")}
-                      >
-                        <Copy className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">
-                      {t("amountToSendLabel")}
-                    </span>
-                    <span className="font-heading font-bold text-primary text-xl">
-                      {symbol}
-                      {displayPrice.toFixed(2)}
+                              : paymentSettings.instaPayAccount;
+                        try {
+                          await navigator.clipboard.writeText(num || "");
+                          toast({ title: "Copied ✅", description: num });
+                        } catch (err) {
+                          toast({ title: "Copy failed", description: String(err) });
+                        }
+                      }}
+                      className="bg-black/10 hover:bg-black/20 p-2 rounded-lg border border-black/10 select-none cursor-pointer"
+                      aria-label={t("copyAccountNumber")}
+                    >
+                      <Copy className="w-4 h-4 text-black" />
+                    </button>
+                    
+                    <span className="font-mono font-black text-base text-black" id="payment-account-number">
+                      {paymentMethod === "stcpay"
+                        ? paymentSettings.stcPayNumber
+                        : paymentMethod === "alrajhi"
+                          ? paymentSettings.alRajhiAccount
+                          : paymentMethod === "vodafone"
+                            ? paymentSettings.vodafoneCash
+                            : paymentSettings.instaPayAccount}
                     </span>
                   </div>
+
+                  <span className="text-xs font-black text-black/60">
+                    {paymentMethod === "stcpay"
+                      ? t("stcPayNumberLabel")
+                      : paymentMethod === "alrajhi"
+                        ? t("alRajhiAccountLabel")
+                        : paymentMethod === "vodafone"
+                          ? t("vodafoneCashNumberLabel")
+                          : "InstaPay Account"}
+                  </span>
+                </div>
+
+                <div className="flex justify-between items-center pt-3 border-t border-black/5">
+                  <span className="font-black text-black text-xl font-heading">
+                    {symbol}
+                    {displayPrice.toFixed(2)}
+                  </span>
+                  <span className="text-xs font-black text-black/60">
+                    {t("amountToSendLabel")}
+                  </span>
                 </div>
               </div>
+
               {(() => {
                 const qr =
                   paymentMethod === "stcpay"
@@ -534,14 +527,14 @@ const Payment = () => {
                       : null;
                 if (qr) {
                   return (
-                    <div className="p-4 rounded-lg border border-border text-center">
-                      <div className="text-sm text-muted-foreground mb-2">
+                    <div className="p-4 bg-white/40 backdrop-blur-sm rounded-xl border border-black/10 text-center shadow-inner">
+                      <div className="text-xs font-black text-black/70 mb-2">
                         {t("scanQrToPay")}
                       </div>
                       <img
                         src={qr}
                         alt="Payment QR"
-                        className="mx-auto max-h-48 rounded"
+                        className="mx-auto max-h-48 rounded-lg border border-black/15 shadow-inner"
                       />
                     </div>
                   );
@@ -551,8 +544,8 @@ const Payment = () => {
 
               {/* Screenshot Upload */}
               <div className="space-y-2">
-                <Label>{t("uploadScreenshot")} *</Label>
-                <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary/50 transition-colors">
+                <Label className="block text-xs font-black text-black/70 mb-1">{t("uploadScreenshot")} *</Label>
+                <div className="border-2 border-dashed border-black/25 hover:border-cyan-500 rounded-2xl p-6 text-center bg-black/5 hover:bg-black/10 transition-colors shadow-inner">
                   <input
                     type="file"
                     accept="image/*"
@@ -560,23 +553,23 @@ const Payment = () => {
                     className="hidden"
                     id="screenshot-upload"
                   />
-                  <label htmlFor="screenshot-upload" className="cursor-pointer">
+                  <label htmlFor="screenshot-upload" className="cursor-pointer block w-full h-full">
                     {screenshot ? (
-                      <div className="space-y-2">
-                        <CheckCircle className="w-12 h-12 mx-auto text-green-500" />
-                        <p className="text-sm text-muted-foreground">
+                      <div className="space-y-2 select-none">
+                        <CheckCircle className="w-12 h-12 mx-auto text-green-600" />
+                        <p className="text-xs font-black text-black/75">
                           {t("screenshotUploaded")}
                         </p>
                         <img
                           src={screenshot}
                           alt="Payment screenshot"
-                          className="max-h-32 mx-auto rounded-lg"
+                          className="max-h-32 mx-auto rounded-lg border border-black/15 shadow"
                         />
                       </div>
                     ) : (
-                      <div className="space-y-2">
-                        <Upload className="w-12 h-12 mx-auto text-muted-foreground" />
-                        <p className="text-sm text-muted-foreground">
+                      <div className="space-y-2 select-none">
+                        <Upload className="w-12 h-12 mx-auto text-black/45" />
+                        <p className="text-xs font-black text-black/60">
                           {t("uploadScreenshot")}
                         </p>
                       </div>
@@ -585,15 +578,17 @@ const Payment = () => {
                 </div>
               </div>
 
-              <Button
-                onClick={handleConfirm}
-                disabled={isSubmitting}
-                className="w-full h-12 bg-primary hover:bg-primary/90 text-primary-foreground font-medium text-lg"
-              >
-                {isSubmitting ? t("processing") : t("confirmPayment")}
-              </Button>
-            </CardContent>
-          </Card>
+              <div className="pt-2">
+                <button
+                  onClick={handleConfirm}
+                  disabled={isSubmitting}
+                  className="metal-btn-blue w-full h-12 text-sm font-black select-none shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                >
+                  {isSubmitting ? t("processing") : t("confirmPayment")}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

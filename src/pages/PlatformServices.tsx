@@ -35,48 +35,58 @@ const PlatformServices = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen metal-mesh-bg text-foreground pb-20">
       <Navbar />
 
       {/* Hero Section */}
-      <section className="py-12 px-4 hero-ramadan">
-        <div className="container mx-auto max-w-6xl">
-          <Button
-            variant="ghost"
+      <section className="py-12 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <button
             onClick={() => navigate('/')}
-            className="mb-6 gap-2"
+            className="metal-btn px-5 py-2.5 text-xs font-black select-none shadow-md flex items-center justify-center gap-2 mb-8 cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            {t("backToPlatforms")}
-          </Button>
+            <span>{t("backToPlatforms")}</span>
+          </button>
 
-          <div className="flex items-center gap-6 animate-fade-in">
-            <div className="w-24 h-24 rounded-2xl overflow-hidden shadow-lg ring-1 ring-white/6">
-              <img
-                src={platform.image}
-                alt={platform.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div>
-              <h1 className="text-4xl md:text-5xl font-heading font-bold text-white mb-2 glow-text">
-                {platform.name} {t("platformServicesTitle")}
-              </h1>
-              <p className="text-xl text-white/80">
-                {platform.description}
-              </p>
+          <div className="chrome-bezel p-[6px] rounded-[24px] shadow-2xl animate-fade-in">
+            <div className="metal-brushed-dark px-6 py-8 md:px-10 md:py-10 rounded-[18px] flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+              
+              {/* Circular Chrome Frame for Platform Icon */}
+              <div className="avatar-porthole-chrome p-[5px] shadow-lg flex-shrink-0 animate-float">
+                <div className="w-24 h-24 rounded-full overflow-hidden bg-zinc-900 flex items-center justify-center border border-black/20">
+                  <img
+                    src={platform.image}
+                    alt={platform.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              
+              <div className="text-center md:text-right flex-1">
+                <h1 className="text-3xl md:text-5xl font-black font-heading metal-text-embossed-light mb-3 tracking-wide">
+                  {platform.name} {t("platformServicesTitle")}
+                </h1>
+                <p className="text-sm md:text-base font-semibold text-muted-foreground/80 leading-relaxed max-w-2xl">
+                  {platform.description}
+                </p>
+              </div>
+
             </div>
           </div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-7xl">
-          <h2 className="text-2xl font-heading font-bold text-foreground mb-8">
-            {t("availableServices")}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="py-10 px-4">
+        <div className="container mx-auto max-w-5xl">
+          <div className="border-b border-[#3a3d42] pb-4 mb-8">
+            <h2 className="text-2xl font-black font-heading text-white tracking-wider text-right">
+              {t("availableServices")}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <div
                 key={service.id}
@@ -89,8 +99,10 @@ const PlatformServices = () => {
           </div>
 
           {services.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground text-lg">{t("noServicesAvailable")}</p>
+            <div className="text-center py-16 chrome-bezel p-[6px] rounded-[24px] max-w-md mx-auto mt-10">
+              <div className="metal-brushed px-6 py-10 rounded-[18px]">
+                <p className="text-black font-black text-lg">{t("noServicesAvailable")}</p>
+              </div>
             </div>
           )}
         </div>

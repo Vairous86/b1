@@ -34,13 +34,25 @@ const PaymentConfirmation = () => {
 
   if (!ids.length) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen metal-mesh-bg text-foreground pb-20">
         <Navbar />
         <section className="py-24 px-4">
           <div className="container mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-heading font-bold mb-4">{t("paymentConfirmation")}</h2>
-            <p className="text-muted-foreground mb-6">{t("noPaymentFound")}</p>
-            <Link to="/" className="inline-block px-4 py-2 rounded bg-primary text-primary-foreground">{t("goHome")}</Link>
+            <div className="chrome-bezel p-[6px] rounded-[24px] shadow-2xl animate-fade-in max-w-md mx-auto">
+              <div className="metal-brushed p-8 rounded-[18px] text-center">
+                <h2 className="text-2xl font-black font-heading metal-text-embossed mb-4">
+                  {t("paymentConfirmation")}
+                </h2>
+                <p className="text-sm font-bold text-black/70 mb-6">
+                  {t("noPaymentFound")}
+                </p>
+                <Link to="/" className="inline-block w-full">
+                  <button className="metal-btn-blue w-full h-11 text-xs font-black select-none shadow-md cursor-pointer">
+                    {t("goHome")}
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
         </section>
       </div>
@@ -48,50 +60,64 @@ const PaymentConfirmation = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen metal-mesh-bg text-foreground pb-20">
       <Navbar />
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-3xl">
-          <h1 className="text-3xl font-heading font-bold mb-6">{t("paymentConfirmation")}</h1>
-          <div className="space-y-4">
+          <h1 className="text-3xl font-black font-heading metal-text-embossed-light mb-8 text-right">
+            {t("paymentConfirmation")}
+          </h1>
+          <div className="space-y-6">
             {orders.length === 0 ? (
-              <Card className="gradient-card">
-                <CardContent>
-                  <p className="text-muted-foreground">{t("loading")}</p>
-                </CardContent>
-              </Card>
+              <div className="chrome-bezel p-[6px] rounded-[24px] shadow-lg animate-slide-up text-right">
+                <div className="metal-brushed-dark p-6 rounded-[18px]">
+                  <p className="text-sm font-semibold text-muted-foreground/80">{t("loading")}</p>
+                </div>
+              </div>
             ) : (
               orders.map((o) => (
-                <Card key={o.id} className="gradient-card">
-                  <CardHeader>
-                    <CardTitle>{o.serviceName || "Order"}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex justify-between mb-2">
-                      <div className="text-muted-foreground">{t("paymentMethod")}</div>
-                      <div>{o.paymentMethod}</div>
-                    </div>
-                    <div className="flex justify-between mb-2">
-                      <div className="text-muted-foreground">{t("amount")}</div>
-                      <div>{o.currency} {o.price.toFixed(2)}</div>
-                    </div>
-                    <div className="flex justify-between mb-2">
-                      <div className="text-muted-foreground">{t("reference")}</div>
-                      <div className="font-mono">{o.accountUrl || o.whatsappNumber || "-"}</div>
-                    </div>
-                    <div className="flex justify-between items-center mt-4">
-                      <div className="text-sm text-muted-foreground">
-                        {o.status === "pending" ? t("paymentUnderReview") : t("paymentReceived")}
+                <div key={o.id} className="chrome-bezel p-[6px] rounded-[24px] shadow-lg animate-slide-up text-right">
+                  <div className="metal-brushed p-6 rounded-[18px]">
+                    <h2 className="text-xl font-black font-heading metal-text-embossed border-b border-black/10 pb-3 mb-4">
+                      {o.serviceName || "Order"}
+                    </h2>
+                    
+                    <div className="space-y-3 text-sm font-bold text-black/85">
+                      <div className="flex justify-between items-center">
+                        <span className="font-mono text-zinc-900">{o.paymentMethod}</span>
+                        <span className="text-black/60">{t("paymentMethod")}</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Button onClick={() => window.location.reload()} variant="ghost">{t("refresh")}</Button>
-                        <Link to="/" className="inline-block">
-                          <Button>{t("goHome")}</Button>
-                        </Link>
+                      <div className="flex justify-between items-center">
+                        <span className="font-black text-zinc-900">{o.currency} {o.price.toFixed(2)}</span>
+                        <span className="text-black/60">{t("amount")}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="font-mono text-zinc-900 break-all select-all">{o.accountUrl || o.whatsappNumber || "-"}</span>
+                        <span className="text-black/60">{t("reference")}</span>
+                      </div>
+                      
+                      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-black/5 mt-4">
+                        <span className="text-xs font-black text-cyan-600 bg-black/10 border border-cyan-500/30 px-3 py-1 rounded-full shadow-[0_0_8px_rgba(0,191,255,0.15)]">
+                          {o.status === "pending" ? t("paymentUnderReview") : t("paymentReceived")}
+                        </span>
+                        
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={() => window.location.reload()}
+                            className="metal-btn px-4 py-2 text-xs font-black select-none shadow-sm cursor-pointer"
+                          >
+                            {t("refresh")}
+                          </button>
+                          <Link to="/" className="inline-block">
+                            <button className="metal-btn-blue px-4 py-2 text-xs font-black select-none shadow-sm cursor-pointer">
+                              {t("goHome")}
+                            </button>
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))
             )}
           </div>

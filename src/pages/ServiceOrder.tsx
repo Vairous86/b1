@@ -189,76 +189,76 @@ const ServiceOrder = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen metal-mesh-bg text-foreground pb-20">
       <Navbar />
 
       <section className="py-12 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <Button
-            variant="ghost"
+        <div className="container mx-auto max-w-5xl">
+          <button
             onClick={() => navigate(`/platform/${service.platform}`)}
-            className="mb-6 gap-2"
+            className="metal-btn px-5 py-2.5 text-xs font-black select-none shadow-md flex items-center justify-center gap-2 mb-8 cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            {t("backToServices")}
-          </Button>
+            <span>{t("backToServices")}</span>
+          </button>
 
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Left Side - Service Image */}
-            <div className="animate-fade-in">
-              <div className="aspect-video rounded-2xl overflow-hidden shadow-lg mb-6">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover"
-                />
+          <div className="grid lg:grid-cols-2 gap-10">
+            {/* Left Side - Service Image and Details */}
+            <div className="animate-fade-in flex flex-col gap-6 text-right order-2 lg:order-1">
+              <div className="chrome-bezel p-[6px] rounded-[24px] shadow-xl">
+                <div className="aspect-video rounded-[18px] overflow-hidden border border-black/20 shadow-inner">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover select-none pointer-events-none"
+                  />
+                </div>
               </div>
 
-              <Card className="gradient-card">
-                <CardHeader>
-                  <CardTitle className="text-xl font-heading">
+              <div className="chrome-bezel p-[6px] rounded-[24px] shadow-xl">
+                <div className="metal-brushed-dark p-6 rounded-[18px] space-y-4">
+                  <h2 className="text-2xl font-black font-heading metal-text-embossed-light border-b border-white/10 pb-3">
                     {service.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground">
+                  </h2>
+                  <p className="text-sm font-semibold text-muted-foreground/80 leading-relaxed">
                     {service.fullDescription}
                   </p>
 
-                  <div className="flex items-center gap-4 pt-4 border-t border-border">
+                  <div className="flex items-center justify-end gap-6 pt-4 border-t border-white/5">
                     <div className="flex items-center gap-2 text-sm">
-                      <Clock className="w-4 h-4 text-primary" />
-                      <span className="text-muted-foreground">
-                        {service.deliveryTime}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <Shield className="w-4 h-4 text-primary" />
-                      <span className="text-muted-foreground">
+                      <span className="text-muted-foreground/85 font-black">
                         {service.guarantee}
                       </span>
+                      <Shield className="w-4 h-4 text-cyan-400" />
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <span className="text-muted-foreground/85 font-black">
+                        {service.deliveryTime}
+                      </span>
+                      <Clock className="w-4 h-4 text-cyan-400" />
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
 
             {/* Right Side - Order Form */}
-            <div className="animate-slide-up">
-              <Card className="gradient-card shadow-card">
-                <CardHeader>
-                  <CardTitle className="text-2xl font-heading flex items-center gap-2">
-                    <CreditCard className="w-6 h-6 text-primary" />
-                    {t("placeYourOrder")}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
+            <div className="animate-slide-up text-right order-1 lg:order-2">
+              <div className="chrome-bezel p-[6px] rounded-[24px] shadow-2xl">
+                <div className="metal-brushed p-6 md:p-8 rounded-[18px]">
+                  <h2 className="text-2xl font-black font-heading metal-text-embossed flex items-center justify-end gap-2 border-b border-black/10 pb-4 mb-6">
+                    <span className="metal-text-embossed">{t("placeYourOrder")}</span>
+                    <CreditCard className="w-6 h-6 text-black" />
+                  </h2>
+
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
                       {service.submissionType !== "text" ? (
                         <>
-                          <Label htmlFor="accountUrl">{t("accountUrlLabel")}</Label>
-                          <Input
+                          <Label htmlFor="accountUrl" className="block text-xs font-black text-black/75 mb-2 mr-1">
+                            {t("accountUrlLabel")}
+                          </Label>
+                          <input
                             id="accountUrl"
                             type="url"
                             placeholder="https://instagram.com/your-profile"
@@ -269,19 +269,21 @@ const ServiceOrder = () => {
                                 accountUrl: e.target.value,
                               })
                             }
-                            className={
-                              errors.accountUrl ? "border-destructive" : ""
-                            }
+                            className={`w-full bg-black/10 border border-black/20 text-black font-bold placeholder-black/45 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-xl px-4 py-3 h-12 text-right select-all ${
+                              errors.accountUrl ? "border-destructive focus:ring-destructive" : ""
+                            }`}
                           />
                           {errors.accountUrl && (
-                            <p className="text-destructive text-sm">
+                            <p className="text-destructive font-bold text-xs mt-1 mr-1">
                               {errors.accountUrl}
                             </p>
                           )}
                         </>
                       ) : (
                         <>
-                          <Label htmlFor="serviceText">{t("serviceTextLabel")}</Label>
+                          <Label htmlFor="serviceText" className="block text-xs font-black text-black/75 mb-2 mr-1">
+                            {t("serviceTextLabel")}
+                          </Label>
                           <textarea
                             id="serviceText"
                             rows={5}
@@ -293,12 +295,12 @@ const ServiceOrder = () => {
                                 serviceText: e.target.value,
                               })
                             }
-                            className={`w-full px-3 py-2 rounded border border-border bg-card dark:bg-muted text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
-                              errors.serviceText ? "border-destructive" : ""
+                            className={`w-full bg-black/10 border border-black/20 text-black font-bold placeholder-black/45 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-xl px-4 py-3 text-right ${
+                              errors.serviceText ? "border-destructive focus:ring-destructive" : ""
                             }`}
                           />
                           {errors.serviceText && (
-                            <p className="text-destructive text-sm">
+                            <p className="text-destructive font-bold text-xs mt-1 mr-1">
                               {errors.serviceText}
                             </p>
                           )}
@@ -308,17 +310,19 @@ const ServiceOrder = () => {
 
                     {service.submissionType !== "text" && service.requiresPayment !== false && (
                       <div className="space-y-2">
-                        <Label htmlFor="package">{t("choosePackage")}</Label>
+                        <Label htmlFor="package" className="block text-xs font-black text-black/75 mb-2 mr-1">
+                          {t("choosePackage")}
+                        </Label>
                         <select
                           id="package"
                           value={selectedPackageId || ""}
                           onChange={(e) => setSelectedPackageId(e.target.value)}
-                          className={`w-full h-12 px-3 rounded border border-border bg-card dark:bg-muted text-foreground focus:outline-none focus:ring-2 focus:ring-ring ${
-                            errors.quantity ? "border-destructive" : ""
+                          className={`w-full bg-black/10 border border-black/20 text-black font-bold focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-xl px-4 py-2 h-12 text-right cursor-pointer ${
+                            errors.quantity ? "border-destructive focus:ring-destructive" : ""
                           }`}
                         >
                           {packages.map((p) => (
-                            <option key={p.id} value={p.id}>
+                            <option key={p.id} value={p.id} className="text-black bg-white">
                               {Number(p.units || 0).toLocaleString()} {service.serviceType} —{" "}
                               {symbol}
                               {Number(
@@ -330,21 +334,21 @@ const ServiceOrder = () => {
                           ))}
                         </select>
                         {packages.length === 0 && (
-                          <p className="text-sm text-muted-foreground">
+                          <p className="text-xs font-bold text-black/60 mt-1 mr-1">
                             {t("noPackagesMsg")}
                           </p>
                         )}
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-[10px] font-bold text-black/55 mt-1 mr-1 leading-normal">
                           {t("priceNote")}
                         </p>
                       </div>
                     )}
 
                     <div className="space-y-2">
-                      <Label htmlFor="whatsappNumber">
+                      <Label htmlFor="whatsappNumber" className="block text-xs font-black text-black/75 mb-2 mr-1">
                         {t("whatsappLabel")}
                       </Label>
-                      <Input
+                      <input
                         id="whatsappNumber"
                         type="tel"
                         placeholder="+966 5XX XXX XXXX"
@@ -355,25 +359,40 @@ const ServiceOrder = () => {
                             whatsappNumber: e.target.value,
                           })
                         }
-                        className={
-                          errors.whatsappNumber ? "border-destructive" : ""
-                        }
+                        className={`w-full bg-black/10 border border-black/20 text-black font-bold placeholder-black/45 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-xl px-4 py-3 h-12 text-right select-all ${
+                          errors.whatsappNumber ? "border-destructive focus:ring-destructive" : ""
+                        }`}
                       />
                       {errors.whatsappNumber && (
-                        <p className="text-destructive text-sm">
+                        <p className="text-destructive font-bold text-xs mt-1 mr-1">
                           {errors.whatsappNumber}
                         </p>
                       )}
                     </div>
 
-                    <div>
-                      <Button type="submit" className="w-full h-12 bg-primary">
-                        {service.requiresPayment === false ? t("submitOrder") : t("proceedPayment")}
-                      </Button>
+                    {/* Display Total Price in a Recessed Panel if applicable */}
+                    {service.requiresPayment !== false && (
+                      <div className="bg-black/15 border border-black/20 rounded-xl p-4 flex items-center justify-between shadow-inner mt-4">
+                        <span className="text-xs font-black text-black/60">{t("totalAmount")}</span>
+                        <span className="text-2xl font-black text-black font-heading">
+                          {symbol}{totalPrice.toFixed(2)}
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="pt-2">
+                      <button
+                        type="submit"
+                        className="metal-btn-blue w-full h-12 text-sm font-black select-none shadow-md transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
+                      >
+                        <span>
+                          {service.requiresPayment === false ? t("submitOrder") : t("proceedPayment")}
+                        </span>
+                      </button>
                     </div>
                   </form>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
           </div>
         </div>
