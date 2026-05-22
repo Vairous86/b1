@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Navbar } from "@/components/Navbar";
 import { PlatformCard } from "@/components/PlatformCard";
 import { Platform, Service } from "@/lib/localStorage";
@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { useLocale } from "@/contexts/LocaleContext";
 import { testimonialsData } from "@/data/testimonials";
+import useEmblaCarousel from "embla-carousel-react";
 
 const AVATAR_POOL = [
   "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80",
@@ -45,22 +46,20 @@ const Index = () => {
   const [most, setMost] = useState<Array<{ service_id: string; visible: boolean }>>([]);
   const [services, setServices] = useState<Service[]>([]);
   const { t, locale } = useLocale();
-  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
 
-  const handlePrevReview = () => {
-    setCurrentReviewIndex((prev) => (prev - 1 + testimonialsData.length) % testimonialsData.length);
-  };
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    direction: locale === "ar" ? "rtl" : "ltr",
+  });
 
-  const handleNextReview = () => {
-    setCurrentReviewIndex((prev) => (prev + 1) % testimonialsData.length);
-  };
+  const handlePrevReview = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleNextReview();
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
+  const handleNextReview = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
 
   useEffect(() => {
     document.title =
@@ -329,63 +328,61 @@ const Index = () => {
           </div>
 
           {/* Testimonial Grid matching the 3 cards and navigation arrows in the image */}
-          <div className="flex items-center gap-4 max-w-5xl mx-auto">
+          <div className="flex items-center gap-4 max-w-5xl mx-auto w-full">
             {/* Left Nav Arrow */}
             <button 
               onClick={handlePrevReview}
-              className="flex w-10 h-10 rounded-full items-center justify-center bg-gradient-to-br from-[#ebedf0] to-[#9ba0a7] border border-[#a3a7ae] text-[#1a1c1f] shadow-md hover:brightness-110 active:scale-95 transition-all"
+              className="flex w-10 h-10 rounded-full items-center justify-center bg-gradient-to-br from-[#ebedf0] to-[#9ba0a7] border border-[#a3a7ae] text-[#1a1c1f] shadow-md hover:brightness-110 active:scale-95 transition-all shrink-0 z-10"
             >
               <span className="text-lg font-bold">{"<"}</span>
             </button>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
-              {[
-                testimonialsData[currentReviewIndex],
-                testimonialsData[(currentReviewIndex + 1) % testimonialsData.length],
-                testimonialsData[(currentReviewIndex + 2) % testimonialsData.length]
-              ].map((item, idx) => {
-                if (!item) return null;
-                return (
+            {/* Embla Viewport */}
+            <div className="overflow-hidden flex-1" ref={emblaRef}>
+              <div className="flex">
+                {testimonialsData.map((item, idx) => (
                   <div 
                     key={item.username + "-" + idx} 
-                    className={`chrome-bezel rounded-[22px] p-2 shadow-lg transition-all duration-500 ${idx > 0 ? "hidden md:block" : ""}`}
+                    className="flex-[0_0_100%] min-w-0 md:flex-[0_0_33.333%] px-3 shrink-0"
                   >
-                    <div className="metal-brushed p-5 rounded-[16px] flex flex-col items-center text-center gap-3 h-full justify-between">
-                      <div className="flex flex-col items-center gap-3 w-full">
-                        {/* Chrome Porthole Avatar Frame */}
-                        <div className="avatar-porthole-chrome">
-                          <img 
-                            src={getAvatarUrl(item.username)} 
-                            alt={item.username} 
-                            className="w-14 h-14 rounded-full object-cover border border-[#4a4e55]"
-                          />
+                    <div className="chrome-bezel rounded-[22px] p-2 shadow-lg h-full">
+                      <div className="metal-brushed p-5 rounded-[16px] flex flex-col items-center text-center gap-3 h-full justify-between">
+                        <div className="flex flex-col items-center gap-3 w-full">
+                          {/* Chrome Porthole Avatar Frame */}
+                          <div className="avatar-porthole-chrome">
+                            <img 
+                              src={getAvatarUrl(item.username)} 
+                              alt={item.username} 
+                              className="w-14 h-14 rounded-full object-cover border border-[#4a4e55]"
+                            />
+                          </div>
+                          
+                          {/* Stars */}
+                          <div className="flex gap-1">
+                            {Array.from({ length: item.rating }).map((_, i) => (
+                              <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-500 drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]" />
+                            ))}
+                          </div>
+
+                          <p className="text-[#1a1b1d] text-xs font-semibold leading-relaxed my-2 italic max-h-[72px] overflow-y-auto w-full scrollbar-thin" dir="auto">
+                            "{item.text}"
+                          </p>
                         </div>
                         
-                        {/* Stars */}
-                        <div className="flex gap-1">
-                          {Array.from({ length: item.rating }).map((_, i) => (
-                            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-500 drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]" />
-                          ))}
-                        </div>
-
-                        <p className="text-[#1a1b1d] text-xs font-semibold leading-relaxed my-2 italic max-h-[72px] overflow-y-auto w-full scrollbar-thin" dir="auto">
-                          "{item.text}"
-                        </p>
+                        <span className="font-heading font-black text-sm text-[#1a1b1d] border-t border-[#000000]/10 pt-2 w-full font-sans select-all">
+                          @{item.username}
+                        </span>
                       </div>
-                      
-                      <span className="font-heading font-black text-sm text-[#1a1b1d] border-t border-[#000000]/10 pt-2 w-full font-sans select-all">
-                        @{item.username}
-                      </span>
                     </div>
                   </div>
-                );
-              })}
+                ))}
+              </div>
             </div>
 
             {/* Right Nav Arrow */}
             <button 
               onClick={handleNextReview}
-              className="flex w-10 h-10 rounded-full items-center justify-center bg-gradient-to-br from-[#ebedf0] to-[#9ba0a7] border border-[#a3a7ae] text-[#1a1c1f] shadow-md hover:brightness-110 active:scale-95 transition-all"
+              className="flex w-10 h-10 rounded-full items-center justify-center bg-gradient-to-br from-[#ebedf0] to-[#9ba0a7] border border-[#a3a7ae] text-[#1a1c1f] shadow-md hover:brightness-110 active:scale-95 transition-all shrink-0 z-10"
             >
               <span className="text-lg font-bold">{">"}</span>
             </button>
