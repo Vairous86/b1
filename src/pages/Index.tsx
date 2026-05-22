@@ -11,6 +11,7 @@ import { Search, Shield, Clock, Award, Headphones, Send, Star } from "lucide-rea
 import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { useLocale } from "@/contexts/LocaleContext";
+import { useCurrency } from "@/contexts/CurrencyContext";
 import { testimonialsData } from "@/data/testimonials";
 import useEmblaCarousel from "embla-carousel-react";
 
@@ -46,6 +47,10 @@ const Index = () => {
   const [most, setMost] = useState<Array<{ service_id: string; visible: boolean }>>([]);
   const [services, setServices] = useState<Service[]>([]);
   const { t, locale } = useLocale();
+  const { currency } = useCurrency();
+  const phoneDisplay = currency === "EGP" ? "+20 109 290 2885" : "+966 50 516 3956";
+  const whatsappNumber = currency === "EGP" ? "201092902885" : "966505163956";
+  const whatsappUrl = `https://wa.me/${whatsappNumber}`;
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
@@ -459,7 +464,7 @@ const Index = () => {
                   </svg>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-black tracking-wide font-heading font-sans select-all">+201234567890</span>
+                  <span className="text-sm font-black tracking-wide font-heading font-sans select-all">{phoneDisplay}</span>
                   <svg className="w-4 h-4 text-[#1a1b1e]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.824-1.168-5.168-3.511-6.336-6.336l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
                   </svg>
@@ -475,7 +480,7 @@ const Index = () => {
               {/* WhatsApp Button (Right) */}
               <div className="flex items-center gap-3">
                 <a 
-                  href={`https://wa.me/201234567890`}
+                  href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="metal-btn px-8 py-3 text-base font-black flex items-center justify-center gap-3 transition-transform hover:scale-105 border-2 border-[#585c63]"
@@ -484,7 +489,7 @@ const Index = () => {
                 </a>
                 {/* Skeuomorphic 3D WhatsApp orb next to it */}
                 <a
-                  href={`https://wa.me/201234567890`}
+                  href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-14 h-14 rounded-full bg-gradient-to-br from-[#ebedf0] to-[#9ba0a7] border-2 border-[#00bfff] shadow-[0_0_20px_rgba(0,191,255,0.7)] flex items-center justify-center cursor-pointer transition-transform hover:scale-110 animate-pulse"
@@ -497,6 +502,26 @@ const Index = () => {
                 </a>
               </div>
 
+            </div>
+          </div>
+
+          {/* Programmer Credits Bottom Bar */}
+          <div className="mt-8 text-center text-xs text-[#7a7a7a] font-semibold select-none flex flex-col md:flex-row items-center justify-between px-4 pb-8 gap-3 border-t border-[#1a1b1d]/40 pt-6">
+            <div>
+              {locale === "ar" 
+                ? "© جميع الحقوق محفوظة لـ بيدو المصري" 
+                : "© All rights reserved to Bedo Elmasry"} {new Date().getFullYear()}
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span>{locale === "ar" ? "تم التطوير بواسطة" : "Developed by"}</span>
+              <a 
+                href="https://khaledwaheed.vercel.app/"
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="font-black text-[#00bfff] hover:text-[#4fc3ff] transition-colors duration-200"
+              >
+                خالد وحيد
+              </a>
             </div>
           </div>
 
