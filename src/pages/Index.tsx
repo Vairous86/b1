@@ -11,6 +11,33 @@ import { Search, Shield, Clock, Award, Headphones, Send, Star } from "lucide-rea
 import { Link } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { useLocale } from "@/contexts/LocaleContext";
+import { testimonialsData } from "@/data/testimonials";
+
+const AVATAR_POOL = [
+  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&h=150&q=80",
+  "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&h=150&q=80"
+];
+
+const getAvatarUrl = (username: string) => {
+  let hash = 0;
+  for (let i = 0; i < username.length; i++) {
+    hash += username.charCodeAt(i);
+  }
+  return AVATAR_POOL[hash % AVATAR_POOL.length];
+};
 
 const Index = () => {
   const [platforms, setPlatforms] = useState<Platform[]>([]);
@@ -18,6 +45,22 @@ const Index = () => {
   const [most, setMost] = useState<Array<{ service_id: string; visible: boolean }>>([]);
   const [services, setServices] = useState<Service[]>([]);
   const { t, locale } = useLocale();
+  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
+
+  const handlePrevReview = () => {
+    setCurrentReviewIndex((prev) => (prev - 1 + testimonialsData.length) % testimonialsData.length);
+  };
+
+  const handleNextReview = () => {
+    setCurrentReviewIndex((prev) => (prev + 1) % testimonialsData.length);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNextReview();
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     document.title =
@@ -288,48 +331,62 @@ const Index = () => {
           {/* Testimonial Grid matching the 3 cards and navigation arrows in the image */}
           <div className="flex items-center gap-4 max-w-5xl mx-auto">
             {/* Left Nav Arrow */}
-            <button className="hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-gradient-to-br from-[#ebedf0] to-[#9ba0a7] border border-[#a3a7ae] text-[#1a1c1f] shadow-md hover:brightness-110 active:scale-95">
+            <button 
+              onClick={handlePrevReview}
+              className="flex w-10 h-10 rounded-full items-center justify-center bg-gradient-to-br from-[#ebedf0] to-[#9ba0a7] border border-[#a3a7ae] text-[#1a1c1f] shadow-md hover:brightness-110 active:scale-95 transition-all"
+            >
               <span className="text-lg font-bold">{"<"}</span>
             </button>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
               {[
-                { name: locale === "ar" ? "أحمد محمد" : "Ahmed Mohamed", text: locale === "ar" ? "خدمة رائعة وسريعة، تعامل احترافي، الجودة ممتازة والدعم متاح دائماً. أنصح بالتعامل معهم" : "Wonderful and fast service, professional handling, excellent quality, and support is always available. I highly recommend dealing with them.", rating: 5, avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80" },
-                { name: locale === "ar" ? "أحمد محمد" : "Ahmed Mohamed", text: locale === "ar" ? "خدمة رائعة وسريعة، تعامل احترافي، الجودة ممتازة والدعم متاح دائماً. أنصح بالتعامل معهم" : "Wonderful and fast service, professional handling, excellent quality, and support is always available. I highly recommend dealing with them.", rating: 5, avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80" },
-                { name: locale === "ar" ? "أحمد محمد" : "Ahmed Mohamed", text: locale === "ar" ? "خدمة رائعة وسريعة، تعامل احترافي، الجودة ممتازة والدعم متاح دائماً. أنصح بالتعامل معهم" : "Wonderful and fast service, professional handling, excellent quality, and support is always available. I highly recommend dealing with them.", rating: 5, avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&h=100&q=80" },
-              ].map((item, idx) => (
-                <div key={idx} className="chrome-bezel rounded-[22px] p-2 shadow-lg">
-                  <div className="metal-brushed p-5 rounded-[16px] flex flex-col items-center text-center gap-3 h-full">
-                    {/* Chrome Porthole Avatar Frame */}
-                    <div className="avatar-porthole-chrome">
-                      <img 
-                        src={item.avatar} 
-                        alt={item.name} 
-                        className="w-14 h-14 rounded-full object-cover border border-[#4a4e55]"
-                      />
-                    </div>
-                    
-                    {/* Stars */}
-                    <div className="flex gap-1">
-                      {Array.from({ length: item.rating }).map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-500 drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]" />
-                      ))}
-                    </div>
+                testimonialsData[currentReviewIndex],
+                testimonialsData[(currentReviewIndex + 1) % testimonialsData.length],
+                testimonialsData[(currentReviewIndex + 2) % testimonialsData.length]
+              ].map((item, idx) => {
+                if (!item) return null;
+                return (
+                  <div 
+                    key={item.username + "-" + idx} 
+                    className={`chrome-bezel rounded-[22px] p-2 shadow-lg transition-all duration-500 ${idx > 0 ? "hidden md:block" : ""}`}
+                  >
+                    <div className="metal-brushed p-5 rounded-[16px] flex flex-col items-center text-center gap-3 h-full justify-between">
+                      <div className="flex flex-col items-center gap-3 w-full">
+                        {/* Chrome Porthole Avatar Frame */}
+                        <div className="avatar-porthole-chrome">
+                          <img 
+                            src={getAvatarUrl(item.username)} 
+                            alt={item.username} 
+                            className="w-14 h-14 rounded-full object-cover border border-[#4a4e55]"
+                          />
+                        </div>
+                        
+                        {/* Stars */}
+                        <div className="flex gap-1">
+                          {Array.from({ length: item.rating }).map((_, i) => (
+                            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-500 drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]" />
+                          ))}
+                        </div>
 
-                    <p className="text-[#1a1b1d] text-xs font-semibold leading-relaxed my-2 italic">
-                      "{item.text}"
-                    </p>
-                    
-                    <span className="font-heading font-black text-sm text-[#1a1b1d] border-t border-[#000000]/10 pt-2 w-full">
-                      {item.name}
-                    </span>
+                        <p className="text-[#1a1b1d] text-xs font-semibold leading-relaxed my-2 italic max-h-[72px] overflow-y-auto w-full scrollbar-thin" dir="auto">
+                          "{item.text}"
+                        </p>
+                      </div>
+                      
+                      <span className="font-heading font-black text-sm text-[#1a1b1d] border-t border-[#000000]/10 pt-2 w-full font-sans select-all">
+                        @{item.username}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Right Nav Arrow */}
-            <button className="hidden md:flex w-10 h-10 rounded-full items-center justify-center bg-gradient-to-br from-[#ebedf0] to-[#9ba0a7] border border-[#a3a7ae] text-[#1a1c1f] shadow-md hover:brightness-110 active:scale-95">
+            <button 
+              onClick={handleNextReview}
+              className="flex w-10 h-10 rounded-full items-center justify-center bg-gradient-to-br from-[#ebedf0] to-[#9ba0a7] border border-[#a3a7ae] text-[#1a1c1f] shadow-md hover:brightness-110 active:scale-95 transition-all"
+            >
               <span className="text-lg font-bold">{">"}</span>
             </button>
           </div>
