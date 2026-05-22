@@ -369,9 +369,14 @@ const Index = () => {
                           </p>
                         </div>
                         
-                        <span className="font-heading font-black text-sm text-[#1a1b1d] border-t border-[#000000]/10 pt-2 w-full font-sans select-all">
+                        <a 
+                          href={item.commentUrl || "https://www.instagram.com/p/CluLi4_rQUD/"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-heading font-black text-sm text-[#1a1b1d] hover:text-[#00bfff] hover:underline border-t border-[#000000]/10 pt-2 w-full font-sans select-all transition-colors duration-200 block"
+                        >
                           @{item.username}
-                        </span>
+                        </a>
                       </div>
                     </div>
                   </div>
